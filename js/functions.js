@@ -82,9 +82,9 @@ console.log(isTwo(random));
  */
 
 function calculateTip(tipPct, totalBill) {
-    return (tipPct * totalBill);
+    return parseFloat(tipPct) / 100 * totalBill;
 }
-console.log(calculateTip(20%, 40));
+console.log(calculateTip(5, 40));
 
 /**
  * TODO:
@@ -92,6 +92,22 @@ console.log(calculateTip(20%, 40));
  * prompt the user for the bill total and a percentage they would like to tip,
  * then display the dollar amount they should tip
  */
+
+var tipOrNoTip = confirm("Would you like to leave a tip?");
+
+function gratuityPromptPercentage() {
+    if (tipOrNoTip == true) {
+        prompt("Enter the gratuity percent you wish to tip:");
+    } else {
+        return ("Thank you for your business :)");
+    }
+}
+
+var tipPct = gratuityPromptPercentage();
+
+function totalBillPrompt() {
+
+}
 
 /**
  * TODO:
