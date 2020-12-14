@@ -1,5 +1,7 @@
 "use strict";
 
+(function() {
+
 /**
  * TODO:
  * Create a function called 'sayHello' that takes a parameter 'name'.
@@ -9,6 +11,10 @@
  * > sayHello("codeup") // returns "Hello, codeup!"
  */
 
+function sayHello(name) {
+    return ("hello, " + name);
+}
+
 /**
  * TODO:
  * Call the function 'sayHello' and pass your name as a string literal argument.
@@ -17,12 +23,18 @@
  * console.log 'helloMessage' to check your work
  */
 
+var helloMessage = sayHello("William");
+console.log(helloMessage);
 /**
  * TODO:
  * Store your name as a string in a variable named 'myName', and pass that
  * variable to the 'sayHello' function. You should see the same output in the
  * console.
  */
+
+var myName = "William";
+console.log(sayHello(myName));
+
 
 // Don't modify the following line, it generates a random number between 1 and 3
 // and stores it in a variable named random
@@ -46,6 +58,17 @@ var random = Math.floor((Math.random() * 3) + 1);
  * number)
  */
 
+function isTwo(testOfTwo) {
+    if (testOfTwo === 2) {
+        return true;
+    } else {
+        return false;
+    }
+}
+isTwo(random);
+console.log(isTwo(random));
+
+
 /**
  * TODO:
  * Create a function named 'calculateTip' to calculate a tip on a bill at a
@@ -57,6 +80,11 @@ var random = Math.floor((Math.random() * 3) + 1);
  * > calculateTip(0.25, 25.50) // returns 6.375
  * > calculateTip(0.15, 33.42) // returns 5.013
  */
+
+function calculateTip(tipPct, totalBill) {
+    return (tipPct * totalBill);
+}
+console.log(calculateTip(20%, 40));
 
 /**
  * TODO:
@@ -79,3 +107,5 @@ var random = Math.floor((Math.random() * 3) + 1);
  *
  * > applyDiscount(45.99, 0.12) // 40.4712
  */
+
+})();
