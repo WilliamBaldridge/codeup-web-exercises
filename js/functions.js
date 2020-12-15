@@ -12,7 +12,7 @@
  */
 
 function sayHello(name) {
-    return ("hello, " + name);
+    return ("hello, " + name + "!");
 }
 
 /**
@@ -59,12 +59,9 @@ var random = Math.floor((Math.random() * 3) + 1);
  */
 
 function isTwo(testOfTwo) {
-    if (testOfTwo === 2) {
-        return true;
-    } else {
-        return false;
-    }
+    return testOfTwo === 2;
 }
+
 isTwo(random);
 console.log(isTwo(random));
 
@@ -93,21 +90,38 @@ console.log(calculateTip(5, 40));
  * then display the dollar amount they should tip
  */
 
-var tipOrNoTip = confirm("Would you like to leave a tip?");
 
-function gratuityPromptPercentage() {
-    if (tipOrNoTip == true) {
-        prompt("Enter the gratuity percent you wish to tip:");
-    } else {
-        return ("Thank you for your business :)");
-    }
-}
+var totalBillDollars = prompt("What is your total bill amount?");
+var percentage = prompt("What is the percentage you would like to tip?");
 
-var tipPct = gratuityPromptPercentage();
+var tipAmountDollars = calculateTip(percentage, totalBillDollars);
 
-function totalBillPrompt() {
+alert("Your tip amount comes out to: $" + tipAmountDollars.toFixed(2));
 
-}
+console.log(tipAmountDollars);
+
+
+
+// var tipOrNoTip = confirm("Would you like to leave a tip?");
+//
+// tipPercent = function gratuityPromptPercentage() {
+//     if (tipOrNoTip == true) {
+//         (prompt("Enter the gratuity percent you wish to tip:"));
+//         } else {
+//             return tipPercent;
+//         }
+//     }
+
+// var tipPct = gratuityPromptPercentage();
+//
+//
+// if (tipOrNoTip === true) {
+//         var totalBill = parseFloat(prompt("Enter the amount of your total bill:"));
+//    }
+
+// if (totalBill > 0) {
+//     alert(tipPct * totalBill)
+// }
 
 /**
  * TODO:
@@ -123,5 +137,11 @@ function totalBillPrompt() {
  *
  * > applyDiscount(45.99, 0.12) // 40.4712
  */
+
+function applyDiscount(originalBill, discountPercentage) {
+    return originalBill (originalBill * discountPercentage);
+}
+
+console.log()
 
 })();
