@@ -1,5 +1,5 @@
 "use strict";
-console.log("testing")
+(function() {
 
 /* ########################################################################## */
 
@@ -21,6 +21,27 @@ console.log("testing")
  * console.logging the function's return value
  */
 
+
+var colorStr = prompt("Say a color, any color...").toLowerCase();
+// var colorStr = "red"
+
+function analyzeColor() {
+    if (colorStr == "blue") {
+        return alert("blue is the color of the sky");
+    } else if (colorStr == "red") {
+        return alert("Strawberries are red");
+    } else if (colorStr == "cyan") {
+        return alert("I dont know anything about cyan");
+    } else {
+        return alert("Sorry, that is not a conceivable color to me");
+    }
+}
+
+// console.log(analyzeColor("blue"));
+// console.log(analyzeColor("red"));
+// console.log(analyzeColor("cyan"));
+// console.log(analyzeColor("purple"));
+
 // Don't change the next two lines!
 // These lines create two variables for you:
 // - `colors`: a list of the colors of the rainbow
@@ -34,10 +55,38 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
  * You should see a different message every time you refresh the page
  */
 
+// analyzeColor(randomColor);
+
+console.log(analyzeColor(randomColor));
+
 /**
  * TODO:
  * Refactor your above function to use a switch-case statement
  */
+
+switch (randomColor) {
+    case "red":
+        console.log("red");
+        break;
+    case "orange":
+        console.log("orange");
+        break;
+    case "yellow":
+        console.log("yellow");
+        break;
+    case "green":
+        console.log("green");
+        break;
+    case "blue":
+        console.log("blue");
+        break;
+    case "indigo":
+        console.log("indigo");
+        break;
+    case "violet":
+        console.log("violet");
+        break;
+}
 
 /**
  * TODO:
@@ -45,6 +94,8 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
  * user to your `analyzeColor` function. Alert the return value from your
  * function to show it to the user.
  */
+
+
 
 /* ########################################################################## */
 
@@ -94,3 +145,7 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
  * Can you refactor your code to use functions?
  * HINT: The way we prompt for a value could be improved
  */
+
+
+
+})();
