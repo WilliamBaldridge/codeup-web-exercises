@@ -147,10 +147,10 @@
 
 // #4
 
-var i = 0
-for (i = 100 ; i > 0 ; i-= 5) {
-    console.log(i)
-}
+// var i = 0
+// for (i = 100 ; i > 0 ; i-= 5) {
+//     console.log(i)
+// }
 
 
 
