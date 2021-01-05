@@ -42,13 +42,22 @@
         */
 
     // var fruits = ["apple", "banana", "orange", "apple", "pineapple"];
+    // //
+    // // function allIndexesOf(array, index) {
+    // //     for (var i = 0; i < array.length; i++) {
+    // //         if ()
+    // //     }
+    // // }
     //
-    // function allIndexesOf(array, index) {
-    //     for (var i = 0; i < array.length; i++) {
-    //         if ()
-    //     }
+    // function allIndexesOf(array, value) {
+    //     var returnArray = [];
+    //     array.forEach(function (element, index) {
+    //         if (element == value) {
+    //             returnArray.push(index);
+    //         }
+    //     });
+    //     return returnArray;
     // }
-    //
     //
     // console.log(allIndexesOf(fruits, "apple")) //should return the array [0, 3]
     // console.log(allIndexesOf(fruits, "guava")) //should return the array []
@@ -64,11 +73,22 @@
     Given:
     */
 
-    //     var bugs = ["mosquito", "ant", "scorpion", "ant", "ant", "mosquito", "typo", "reference error", "type error"];
-    //
-    // removeAll(bugs, "ant") // should return ["mosquito", "scorpion",   "mosquito", "typo", "reference error", "type error"]
-    // removeAll(bugs, "mosquito") // should return ["ant", "scorpion", "ant",   "ant", "typo", "reference error", "type error"]
-    // removeAll(bugs, "roach") // should return the original array b/c "roach" has no occurrances.
+        var bugs = ["mosquito", "ant", "scorpion", "ant", "ant", "mosquito", "typo", "reference error", "type error"];
+
+        function removeAll(array, value) {
+            var returnArray = [];
+                array.forEach(function (element) {
+                    if (element !== value) {
+                        returnArray.push(element);
+                    }
+                });
+                return returnArray;
+            }
+
+
+    console.log(removeAll(bugs, "ant")) // should return ["mosquito", "scorpion",   "mosquito", "typo", "reference error", "type error"]
+    console.log(removeAll(bugs, "mosquito")) // should return ["ant", "scorpion", "ant",   "ant", "typo", "reference error", "type error"]
+    console.log(removeAll(bugs, "roach")) // should return the original array b/c "roach" has no occurrances.
 
 
 

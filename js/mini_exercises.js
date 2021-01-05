@@ -139,7 +139,7 @@ var myDog = {
             date: "07/23/2020"
         }
     ],
-    speak : function bark() {
+    speak : function () {
         console.log("Woof!")
     },
     birthday: function getOlder() {
@@ -159,6 +159,6 @@ var myDog = {
     }
 };
 
-console.log(myDog.speak());
+myDog.speak();
 
 })();

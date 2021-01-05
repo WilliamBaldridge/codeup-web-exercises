@@ -12,13 +12,13 @@
      *  > console.log(person.lastName) // "Sanchez"
      */
 
-    // var person = {
-    //     firstName: "William",
-    //     lastName: "Baldridge"
-    // };
-    //
-    // console.log(person.firstName)
-    // console.log(person.lastName)
+    var person = {
+        firstName: "William",
+        lastName: "Baldridge"
+    };
+
+    console.log(person.firstName)
+    console.log(person.lastName)
 
     /**
      * TODO:
@@ -31,11 +31,11 @@
      */
 
 
-    // person.sayHello = function sayHello() {
-    //     console.log(person.firstName + " " + person.lastName + ", greetings.");
-    // }
-    //
-    // console.log(person.sayHello());
+    person.sayHello = function sayHello() {
+        console.log(person.firstName + " " + person.lastName + ", greetings.");
+    }
+
+   person.sayHello();
 
     /** TODO:
      * HEB has an offer for the shoppers that buy products amounting to
@@ -51,16 +51,16 @@
      * and console.log the relevant messages for each person
      */
 
-    var shoppers = [
-        {name: 'Cameron', amount: 180},
-        {name: 'Ryan', amount: 250},
-        {name: 'George', amount: 320}
-    ];
-
-
-    if (shoppers.forEach(function()).amount >= 200 ) {
-
-        }
+    // var shoppers = [
+    //     {name: 'Cameron', amount: 180},
+    //     {name: 'Ryan', amount: 250},
+    //     {name: 'George', amount: 320}
+    // ];
+    //
+    //
+    // if (shoppers.forEach(function()).amount >= 200 ) {
+    //
+    //     }
 
 
     /** TODO:
