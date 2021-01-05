@@ -152,11 +152,13 @@ var myDog = {
     },
     newVetShots: function vaccinate (nameOfVaccination) {
         console.log(this.shotRecords);
-        this.shotRecords.push(nameOfVaccination);
+        this.shotRecords.push({
+            typeOfShot: nameOfVaccination,
+            date: new Date()
+        });
     }
 };
 
-
-
+console.log(myDog.speak());
 
 })();
