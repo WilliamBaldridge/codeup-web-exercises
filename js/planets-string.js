@@ -72,27 +72,37 @@
 
     Given:
     */
+        //
+        // var bugs = ["mosquito", "ant", "scorpion", "ant", "ant", "mosquito", "typo", "reference error", "type error"];
+        //
+        // function removeAll(array, value) {
+        //     var returnArray = [];
+    //             array.forEach(function (element) {
+    //                 if (element !== value) {
+    //                     returnArray.push(element);
+    //                 }
+    //             });
+    //             return returnArray;
+    //         }
+    //
+    //
+    // console.log(removeAll(bugs, "ant")) // should return ["mosquito", "scorpion",   "mosquito", "typo", "reference error", "type error"]
+    // console.log(removeAll(bugs, "mosquito")) // should return ["ant", "scorpion", "ant",   "ant", "typo", "reference error", "type error"]
+    // console.log(removeAll(bugs, "roach")) // should return the original array b/c "roach" has no occurrances.
 
-        var bugs = ["mosquito", "ant", "scorpion", "ant", "ant", "mosquito", "typo", "reference error", "type error"];
+function randomInBetween(min, max) {
+    // return (Math.random() * min) + (Math.random() * max);
+    return Math.floor(Math.random() * (max - min) + min);
+}
 
-        function removeAll(array, value) {
-            var returnArray = [];
-                array.forEach(function (element) {
-                    if (element !== value) {
-                        returnArray.push(element);
-                    }
-                });
-                return returnArray;
-            }
+console.log(randomInBetween(12, 48));
 
+function coinFlip() {
+    return Math.floor(Math.random() * 2);
+}
 
-    console.log(removeAll(bugs, "ant")) // should return ["mosquito", "scorpion",   "mosquito", "typo", "reference error", "type error"]
-    console.log(removeAll(bugs, "mosquito")) // should return ["ant", "scorpion", "ant",   "ant", "typo", "reference error", "type error"]
-    console.log(removeAll(bugs, "roach")) // should return the original array b/c "roach" has no occurrances.
+console.log(coinFlip());
 
-
-
-
-
+console.log(Math.floor(Math.random() * 10) + );
 
 })();
