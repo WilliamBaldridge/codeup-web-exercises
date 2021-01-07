@@ -11,14 +11,14 @@
      *  > console.log(person.firstName) // "Rick"
      *  > console.log(person.lastName) // "Sanchez"
      */
-
-    var person = {
-        firstName: "William",
-        lastName: "Baldridge"
-    };
-
-    console.log(person.firstName)
-    console.log(person.lastName)
+    //
+    // var person = {
+    //     firstName: "William",
+    //     lastName: "Baldridge"
+    // };
+    //
+    // console.log(person.firstName)
+    // console.log(person.lastName)
 
     /**
      * TODO:
@@ -30,12 +30,12 @@
      * > console.log(person.sayHello()) // "Hello from Rick Sanchez!"
      */
 
-
-    person.sayHello = function sayHello() {
-        console.log(person.firstName + " " + person.lastName + ", greetings.");
-    }
-
-   person.sayHello();
+   //
+   //  person.sayHello = function sayHello() {
+   //      console.log(person.firstName + " " + person.lastName + ", greetings.");
+   //  }
+   //
+   // person.sayHello();
 
     /** TODO:
      * HEB has an offer for the shoppers that buy products amounting to
@@ -51,16 +51,29 @@
      * and console.log the relevant messages for each person
      */
 
-    // var shoppers = [
-    //     {name: 'Cameron', amount: 180},
-    //     {name: 'Ryan', amount: 250},
-    //     {name: 'George', amount: 320}
-    // ];
-    //
-    //
-    // if (shoppers.forEach(function()).amount >= 200 ) {
-    //
-    //     }
+    var shoppers = [
+        {name: 'Cameron', amount: 180},
+        {name: 'Ryan', amount: 250},
+        {name: 'George', amount: 320}
+    ];
+
+
+    // shoppers.discount = function discount() {
+    //     this.amount
+    // }
+
+
+    shoppers.forEach(function(shopper) {
+        var discountSpendQual = 200
+        var qualifyingPay = discountSpendQual - shopper.amount
+        if (shopper.amount >= 200) {
+             console.log(shopper.name + ", congrats on your discount");
+        } else {
+            console.log(shopper.name + ", you need to spend an additional $" + qualifyingPay + " to earn a discount!");
+        }
+    });
+
+
 
 
     /** TODO:

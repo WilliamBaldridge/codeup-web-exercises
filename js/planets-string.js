@@ -103,6 +103,6 @@ function coinFlip() {
 
 console.log(coinFlip());
 
-console.log(Math.floor(Math.random() * 10) + );
+console.log(Math.floor(Math.random() * 10) + 1);
 
 })();
