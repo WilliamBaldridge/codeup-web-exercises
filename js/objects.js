@@ -32,10 +32,10 @@
 
    //
    //  person.sayHello = function sayHello() {
-   //      console.log(person.firstName + " " + person.lastName + ", greetings.");
+   //      return person.firstName + " " + person.lastName + ", greetings.";
    //  }
    //
-   // person.sayHello();
+   // console.log(person.sayHello());
 
     /** TODO:
      * HEB has an offer for the shoppers that buy products amounting to
@@ -51,28 +51,46 @@
      * and console.log the relevant messages for each person
      */
 
-    var shoppers = [
-        {name: 'Cameron', amount: 180},
-        {name: 'Ryan', amount: 250},
-        {name: 'George', amount: 320}
-    ];
+    // var shoppers = [
+    //     {name: 'Cameron', amount: 180},
+    //     {name: 'Ryan', amount: 250},
+    //     {name: 'George', amount: 320}
+    // ];
 
 
-    // shoppers.discount = function discount() {
-    //     this.amount
+    // shoppers.forEach(function(shopper) {
+    //     var discountSpendQual = 200
+    //     var qualifyingPay = discountSpendQual - shopper.amount
+    //     if (shopper.amount > 200) {
+    //          console.log(shopper.name + ", congrats on your discount");
+    //     } else {
+    //         console.log(shopper.name + ", you need to spend an additional $" + qualifyingPay + " to earn a discount!");
+    //     }
+    // });
+
+    // function calculateDiscountSavings(amount, qualifyingPurchaseAmount, discountRate) {
+    //     // if (amount > qualifyingPurchaseAmount) {
+    //     //     return amount * discountRate;
+    //     // } else {
+    //     //     return 0;
+    //     // }
+    //     return (amount > qualifyingPurchaseAmount ? amount * discountRate : 0);
     // }
-
-
-    shoppers.forEach(function(shopper) {
-        var discountSpendQual = 200
-        var qualifyingPay = discountSpendQual - shopper.amount
-        if (shopper.amount >= 200) {
-             console.log(shopper.name + ", congrats on your discount");
-        } else {
-            console.log(shopper.name + ", you need to spend an additional $" + qualifyingPay + " to earn a discount!");
-        }
-    });
-
+    //
+    // var qualifyingPurchaseAmount = 200;
+    // var discountRate = .12
+    //
+    // shoppers.forEach(function(shopper) {
+    //     var name = shopper.name;
+    //     var originalSpend = shopper.amount;
+    //     var discountSavings = calculateDiscountSavings(originalSpend, qualifyingPurchaseAmount, discountRate);
+    //     var afterDiscountCost = originalSpend - discountSavings;
+    //     var message = name +
+    //         " made a purchase of " + originalSpend +
+    //         " and will save " + discountSavings +
+    //         " off the purchase for a total cost of " + afterDiscountCost;
+    //     console.log(message);
+    // });
 
 
 
@@ -88,6 +106,47 @@
      * > console.log(books[0].author.firstName) // "Douglas"
      * > console.log(books[0].author.lastName) // "Adams"
      */
+
+    var books = [
+        {
+            title: "A Darkness Forged in Fire: Book One of the Iron Elves",
+            author:  {
+                firstName: "Chris",
+                lastName: "Evans"}
+                },
+        {
+            title: "The Prophet",
+            author: {
+                firstName: "Khalil",
+                lastName: "Gibran"}
+                },
+        {
+            title: "Romance of the Three Kingdoms",
+            author:  {
+                firstName: "Luo",
+                lastName: "Guanzhong"}
+                },
+        {
+            title: "Harry Potter and the Half-Blood Prince",
+            author:  {
+                firstName: "J.K.",
+                lastName: "Rowling"}
+                },
+        {
+            title: "The Black Swan: The Impact of the Highly Improbable",
+            author:  {
+                firstName: "Nassim",
+                lastName: "Nicholas Taleb"}
+                },
+    ];
+
+
+books.forEach(function(book, index) {
+    console.log("Book # "  + index);
+    console.log("Title: " + book.title);
+    console.log("Author: " + book.author.firstName + " " + book.author.lastName);
+});
+
 
     /**
      * TODO:
@@ -114,6 +173,20 @@
      *      ...
      */
 
+    books.createBookInput = function createBook(newBook, authorFirst, authorLast) {
+    return books.push(
+        {
+            title: newBook,
+            author:
+                {
+                    firstName: authorFirst,
+                    lastName: authorLast
+                }
+        });
+}
+
+createBookInput();
+
     /**
      * Bonus:
      * - Create a function named `createBook` that accepts a title and author
@@ -124,5 +197,7 @@
      *   outputs the information described above. Refactor your loop to use your
      *   `showBookInfo` function.
      */
+
+
 
 })();
