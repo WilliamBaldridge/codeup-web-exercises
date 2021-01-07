@@ -141,11 +141,12 @@
     ];
 
 
-books.forEach(function(book, index) {
-    console.log("Book # "  + index);
-    console.log("Title: " + book.title);
-    console.log("Author: " + book.author.firstName + " " + book.author.lastName);
-});
+    books.forEach(function(book, index) {
+        var bookNumber = index + 1;
+        console.log("Book # "  + bookNumber);
+        console.log("Title: " + book.title);
+        console.log("Author: " + book.author.firstName + " " + book.author.lastName);
+    });
 
 
     /**
@@ -173,19 +174,40 @@ books.forEach(function(book, index) {
      *      ...
      */
 
-    books.createBookInput = function createBook(newBook, authorFirst, authorLast) {
-    return books.push(
-        {
+// function createBook (newBook, authorFirst, authorLast) {
+//     return books.push({
+//             title: newBook,
+//             author: {
+//                     firstName: authorFirst,
+//                     lastName: authorLast
+//                 }
+//         });
+// }
+//
+
+    function createBook (newBook, author) {
+        var nameArr = author.split(" ");
+        var firstName = nameArr[0];
+        var lastName = nameArr[1];
+        return {
             title: newBook,
-            author:
-                {
-                    firstName: authorFirst,
-                    lastName: authorLast
+            author: {
+                    firstName: firstName,
+                    lastName: lastName
                 }
-        });
+        };
 }
 
-createBookInput();
+//
+console.log(createBook("working? yes,","no?", "maybe so?"));
+    console.log(books);
+//
+//     books.forEach(function(book, index) {
+//         var bookNumber = index + 1;
+//         console.log("Book # "  + index);
+//         console.log("Title: " + book.title);
+//         console.log("Author: " + book.author.firstName + " " + book.author.lastName);
+// });
 
     /**
      * Bonus:
@@ -198,6 +220,6 @@ createBookInput();
      *   `showBookInfo` function.
      */
 
-
+// books.forEach(function (id, title))
 
 })();
