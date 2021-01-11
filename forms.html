@@ -10,36 +10,41 @@
 </head>
 <body>
 
-    <form method="POST" action="https://request-inspector.glitch.me/">
-
+<form method="POST" action="https://request-inspector.glitch.me/">
+    <section>
         <label for="email">Email:</label>
-        <input id="email" name="email" type="text">
+        <input id="email" name="email" type="text" placeholder="Enter email here">
         <br>
 
         <label for="password">Password:</label>
-        <input id="password" name="password" type="text">
-        <br>
+        <input id="password" name="password" type="password" placeholder="Enter password">
+    </section>
 
+    <section>
         <label for="bio">bio</label>
         <br>
         <textarea name="bio" id="bio" cols="30" rows="10" maxlength="100"></textarea>
-        <br>
+    </section>
 
+    <section>
+        <h4>How did you hear about us</h4>
+        <!--        <fieldset>-->
+        <!--            <legend>How did you hear about us</legend>-->
+        <input type="checkbox" name="hearAboutUs" id="billboard" value="billboard">
+        <label for="billboard">Billboard</label>
+        <input type="checkbox" name="hearAboutUs" id="radioAd" value="radio advertisement">
+        <label for="radioAd">Radio Advertisement</label>
+        <input type="checkbox" name="hearAboutUs" id="internetAd" value="internet advertisement">
+        <label for="internetAd">Internet Advertisement</label>
+        <input type="checkbox" name="hearAboutUs" id="other" value="other">
+        <label for="other">Other</label>
+        <!--        </fieldset>-->
+    </section>
 
-        <fieldset>
-            <legend>How did you hear about us</legend>
-            <input type="radio" name="billboard" id="billboard" value="billboard">
-            <label for="billboard">Billboard</label>
-            <input type="radio" name="radioAd" id="radioAd" value="radio advertisement">
-            <label for="radioAd">Radio Advertisement</label>
-            <input type="radio" name="internetAd" id="internetAd" value="internet advertisement">
-            <label for="internetAd">Internet Advertisement</label>
-            <input type="radio" name="other" id="other" value="other">
-            <label for="other">Other</label>
-        </fieldset>
-        <br>
-
-        <label for="whatBrowser">What web browser are you using?</label>
+    <section>
+        <h4>
+            <label for="whatBrowser">What web browser are you using?</label>
+        </h4>
         <select name="whatBrowser" id="whatBrowser">
             <option value="safari" selected></option>
             <option value="safari">Safari</option>
@@ -47,14 +52,11 @@
             <option value="chrome">Google Chrome</option>
             <option value="edge">Microsoft Edge</option>
         </select>
-        <br>
+    </section>
 
-        <button type="submit">Submit</button>
+    <button type="submit">Submit</button>
 
-    </form>
-
-
-
+</form>
 
 
 </body>
