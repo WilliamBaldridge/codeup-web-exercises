@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>HTML Forms Lecture</title>
+<!--    <style> textarea {-->
+<!--        resize: none;-->
+<!--    }-->
+<!--    </style>-->
 </head>
 <body>
 
@@ -16,7 +20,26 @@
         <input id="password" name="password" type="password">
         <br>
 
-        <input type="submit">
+        <label for="comment">Comment Here:</label>
+        <br>
+        <textarea name="comment" id="comment" cols="30" rows="10" maxlength="50" >Tell me about your day...</textarea>
+        <br>
+
+        <input name="newsletter" id="newsletter" type="checkbox" value="sign me up" checked>
+        <label for="newsletter">Would you like to learn more?</label>
+        <br>
+
+        <label for="videoGameConsole">What console do you own?</label>
+        <select name="console" id="videoGameConsole">
+            <option value="switch">Nintendo Switch</option>
+            <option value="xbox">Xbox Series X</option>
+            <option value="playstation" selected>Playstation 5</option>
+        </select>
+
+        <input type="hidden" name="hidden-val" value="kittens">
+
+
+        <button type="submit">Submit</button>
     </form>
 
 
