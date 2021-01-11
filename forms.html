@@ -2,14 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>Register With Us</title>
 </head>
 <body>
 
     <form method="POST" action="https://request-inspector.glitch.me/">
 
+        <label for="email">Email:</label>
+        <input id="email" name="email" type="text">
+        <br>
+
+        <label for="password">Password:</label>
+        <input id="password" name="password" type="text">
+        <br>
+
+        <label for="bio">bio</label>
+        <br>
+        <textarea name="bio" id="bio" cols="30" rows="10" maxlength="100"></textarea>
+        <br>
 
 
+        <fieldset>
+            <legend>How did you hear about us</legend>
+            <input type="radio" name="billboard" id="billboard" value="billboard">
+            <label for="billboard">Billboard</label>
+            <input type="radio" name="radioAd" id="radioAd" value="radio advertisement">
+            <label for="radioAd">Radio Advertisement</label>
+            <input type="radio" name="internetAd" id="internetAd" value="internet advertisement">
+            <label for="internetAd">Internet Advertisement</label>
+            <input type="radio" name="other" id="other" value="other">
+            <label for="other">Other</label>
+        </fieldset>
+        <br>
+
+        <label for="whatBrowser">What web browser are you using?</label>
+        <select name="whatBrowser" id="whatBrowser">
+            <option value="safari" selected></option>
+            <option value="safari">Safari</option>
+            <option value="fireFox">Firefox</option>
+            <option value="chrome">Google Chrome</option>
+            <option value="edge">Microsoft Edge</option>
+        </select>
+        <br>
+
+        <button type="submit">Submit</button>
 
     </form>
 
