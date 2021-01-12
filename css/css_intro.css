@@ -20,3 +20,33 @@ div {
 .cena {
     width: 40px;
 }
+
+.fancy-header1 {
+    color: chocolate;
+}
+
+#welcome {
+    color: darkolivegreen;
+}
+
+h2, p {
+    color: darkblue;
+    background-color: antiquewhite;
+}
+
+.green-text {
+    color: green;
+}
+
+.light-bg {
+    background-color: blanchedalmond;
+}
+
+section p {
+    text-decoration: underline darkred;
+}
+
+section>p {
+    color: crimson;
+}
+
