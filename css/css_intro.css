@@ -57,10 +57,11 @@ span {
 
 body {
     background-image: url('https://mdn.mozillademos.org/files/7693/catfront.png');
-    /*background-repeat: no-repeat;*/
+    background-repeat: no-repeat;
     /*background-image: url("../img/codeup_arrow.png");*/
     background-blend-mode: overlay;
     opacity: 90%;
+    background-size: 500px;
     animation: picturePop 5s;
 }
 

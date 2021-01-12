@@ -1,3 +1,27 @@
+body {
+    background-image: url("");
+    background-blend-mode: overlay;
+}
+
 .fancy-header {
     color: purple;
+}
+
+@keyframes picturePop {
+    0% {
+        transform: scale(0.3);
+        opacity: 90%;
+    }
+    60% {
+        transform: scale(1.1);
+        opacity: 90%;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 90%;
+    }
+}
+
+div>img {
+    animation: picturePop 5s;
 }
