@@ -1,0 +1,22 @@
+/* single line and multi-line comment format */
+
+h1 {
+    color: teal;
+    text-decoration: underline indianred;
+}
+
+div {
+    height: 400px;
+    width: 150px;
+    background-color: burlywood;
+    box-shadow: -10px 10px black;
+}
+
+.salutations {
+    color: sienna;
+    text-decoration: overline;
+}
+
+.cena {
+    width: 40px;
+}
