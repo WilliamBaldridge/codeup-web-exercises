@@ -65,11 +65,12 @@ a {
 }
 
 .profile-form {
-    position: absolute;
+    position: relative;
+    /*line-height: 80px;*/
 }
 
 form>.btn {
-    /*position: relative;*/
+    position: relative;
 }
 
 .profile-header {
@@ -79,7 +80,7 @@ form>.btn {
 .profile-image {
     position: absolute;
     left: auto;
-    top: -20px;
+    top: -25px;
 }
 
 .btn {
@@ -89,7 +90,6 @@ form>.btn {
     font-weight: bold;
     padding: 8px;
     border-radius: 5px;
-    position: absolute;
 }
 
 .btn-large {
