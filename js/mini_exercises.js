@@ -161,4 +161,47 @@ var myDog = {
 
 myDog.speak();
 
+
+
+
+        // Create a function, returnUserFirstLetters, that takes in array of user objects and returns a string of the first letters in lowercase of all the user firstName property values.
+        //
+        // Example:
+
+        var users = [
+          {
+            age: 24,
+            firstName: 'John'
+          },
+          {
+            age: 43,
+            firstName: 'Cathy'
+          },
+          {
+            age: 65,
+            firstName: 'Bob'
+          }
+        ];
+
+
+    function userFirstInitial(userArr) {
+        var output =  "";
+        for (var i =0; i < userArr.length; i += 1) {
+            output += userArr[i].firstName[0].toLowerCase();
+        }
+        return output;
+    }
+
+        users.forEach(function userFirstInitial(userArr) {
+            userArr += userArr.firstName[0].toLowerCase();
+            return userArr ;
+        });
+
+
+
+        console.log(userFirstInitial(users)); // returns the value "jcb"
+
+
+
+
 })();
