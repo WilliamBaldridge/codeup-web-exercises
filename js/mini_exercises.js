@@ -201,7 +201,9 @@ myDog.speak();
 
         console.log(userFirstInitial(users)); // returns the value "jcb"
 
-
+function returnSeven() {
+    return 7;
+}
 
 
 })();
