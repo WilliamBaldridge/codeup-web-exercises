@@ -1,22 +1,29 @@
 .card .card-body .card-header .card-text .card-title {
-    width: 100%;
+    /*width: 100%;*/
 }
 
 .container {
-    width: 100%;
-    margin-top: 0;
-    margin-bottom: auto;
-    padding:0;
+    /*width: 100%;*/
+    /*margin: 0;*/
+    /*margin-bottom: auto;*/
+    /*padding:0;*/
 }
 
 .jumbotron {
-    width: 100%;
+    background-image: url(../img/pizza.png);
+    padding: 3rem;
+    box-sizing: border-box;
+    /*width: 100%;*/
 }
 
 h1 {
     background: ghostwhite;
     opacity: 60%;
-    display: flex;
-    justify-content: center;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    text-align: center;
+}
 
+ul {
+  list-style-type: none;
 }
