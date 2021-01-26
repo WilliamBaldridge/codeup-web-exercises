@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BOM and DOM Lecture</title>
+</head>
+<body>
+
+# Bom and Dom
+
+- How do HTML and JavaScript work together?
+
+- What are some examples you have seen of HTML and JS working together?
+
+## `window`
+
+- What is the `window` object?
+
+
+
+- What is the difference between `window.a` and `a`?
+
+    No difference, the point to the same global variable "a"
+
+- What are some notable properties of the `window` object?
+
+    window.location , window.scrollY , window.height  .width
+
+
+
+
+## `setTimeout` + `setInterval`
+
+        setInterval and setTimeout let us execute code after a delay, or repeatedly with a delay
+
+- What is a callback function?
+    function sayHello(); calls the function
+    sayHello; just references the function
+
+    function sayHello() {
+        console.log("Hello");
+}
+
+- What do `setTimeout` and `setInterval` allow us to do? What are some examples
+of this?
+
+setTimeout(sayHello, 4000);
+
+setInterval(function() {
+    console.log("inside setInterval callback")
+}, 1000)
+
+clearInterval(#)
+
+
+i = 5;
+
+var intervalID = setInterval(function() {
+    console.log(i);
+    i -= 1;
+        if (i <= 0) {
+            console.log("blastoff!");
+            clearInterval(intervalID);    <---- inserted to "break" interval out of infinite loop
+    }
+}, 1000);
+
+- What is the difference between `setTimeout`, `setInterval`, and `clearInterval`?
+
+
+</body>
+</html>
