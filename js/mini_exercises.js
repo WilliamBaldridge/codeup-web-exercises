@@ -221,4 +221,15 @@ function evenlyDivisible(num1, num2) {
 }
 
 
+function firstAndLast (arr) {
+    var bucket = [];
+    bucket.push(arr[0]);
+    bucket.push(arr[arr.length - 1]) ;
+    return bucket;
+}
+
+
+
+
+
 })();
