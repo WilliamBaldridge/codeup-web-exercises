@@ -25,20 +25,25 @@
     culpa qui officia deserunt mollit anim id est laborum.
 </p>
 
+<button id="changeMainHeader">Click me</button>
+<button id="changeSubHeader">No me</button>
+<button id="changeListItems">No, click me</button>
+<button id="changeSubParagraph">Meee</button>
+
 <script>
     (function() {
         "use strict";
         // TODO: Uncomment next line and get the main header element by id
-        var mainHeader = document.getElementById("main-header");
+        // var mainHeader = document.getElementById("main-header");
 
         // TODO: Set inner html of mainHeader to "JavaScript is Cool"
-        mainHeader.innerHTML = "JavaScript is Cool";
+        // mainHeader.innerHTML = "JavaScript is Cool";
 
         // TODO: Uncomment the next line and get the sub header element by id
-        var subHeader = document.getElementById("sub-header");
+        // var subHeader = document.getElementById("sub-header");
 
         // TODO: Set the text color of subHeader to blue
-        subHeader.style.color = "blue";
+        // subHeader.style.color = "blue";
 
         // TODO: Uncomment the next line and get all list items
         var listItems = Array.from(document.getElementsByTagName("li"));
@@ -47,20 +52,53 @@
         // TODO: Set text color of li with dbid = 1 to blue
         var makeGrey = true
 
-        listItems.forEach((li) => {
-            if (makeGrey)
-                li.style.color = "grey"
-                makeGrey = !makeGrey
-            if (li.getAttribute("data-dbid") === "1")
-                li.style.color = "blue"
-                console.log("this code ran")
-        })
+        // listItems.forEach((li) => {
+        //     if (makeGrey)
+        //         li.style.color = "grey"
+        //         makeGrey = !makeGrey
+        //     if (li.getAttribute("data-dbid") === "1")
+        //         li.style.color = "blue"
+        //         console.log("this code ran")
+        // })
 
         // TODO: Uncomment the next line and get all elements with class name sub-paragraph
         var subParagraphs = document.getElementsByClassName("sub-paragraph");
 
         // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"
         subParagraphs[0].innerHTML = "Mission Accomplished!"
+
+
+        var mainHeadEvent = function (event) {
+            var mainHeader = document.getElementById("main-header");
+            mainHeader.innerHTML = "JavaScript is Cool";
+        }
+
+        var changeMainHead = document.getElementById("changeMainHeader").addEventListener("click", mainHeadEvent);
+
+
+        var subHeadEvent = function (event) {
+            var subHeader = document.getElementById("sub-header");
+            subHeader.style.color = "blue";
+        }
+
+        var changeSubHead = document.getElementById("changeSubHeader").addEventListener("click", subHeadEvent);
+
+        var listEvent = function (event) {
+            var listItems = Array.from(document.getElementsByTagName("li"));
+            if (makeGrey) {
+                document.querySelector("li[data-dbid $= '2 % === 0']").style.color = "grey"
+                makeGrey = !makeGrey
+            }
+
+            document.querySelector("li[data-dbid = '1']").style.color = 'blue';
+        }
+
+
+        var changeList = document.getElementById("changeListItems").addEventListener("click", listEvent);
+
+
+
+
 
     })();
 </script>
