@@ -105,4 +105,52 @@ console.log(coinFlip());
 
 console.log(Math.floor(Math.random() * 10) + 1);
 
+
+
+
+
+
+
+    // function remove9s(arr) {
+    //     return arr.filter(function(arr) {
+    //         return arr !== 9
+    //     })
+    // }
+
+    function remove9s(arr) {
+        var bucket = [];
+        arr.forEach(function (element) {
+            if (element !== 9) {
+                bucket.push(element);
+            }
+        })
+        return bucket;
+    }
+
+
+    // function averageSales(arrObj) {
+    //     var totalSales = 0;
+    //     for (var i =0; i < arrObj.length; i += 1) {
+    //         totalSales += arrObj[i].sales;
+    //     }
+    //     return totalSales / arrObj.length;
+    // }
+
+    function averageSales(arrObj) {
+        var bucket = [];
+        arrObj.forEach(function(person) {
+            bucket.push(person.sales);
+        });
+        return average(bucket);
+    }
+
+    // Write a function named capitalizeName that accepts a string that is a first and last name separated by a space, and returns a string that that has the first and last names capitalized.
+
+    function capitalizeName() {
+
+    }
+
+
+
+
 })();
