@@ -69,6 +69,7 @@ $(document).ready(function () {
         let container = $(".container");
 
         function addDOAHover(elementsToBind) {
+
             let dOAHover = function () {
                 $(this).css({
                     "padding": "400px",
@@ -82,17 +83,148 @@ $(document).ready(function () {
                 });
             }
             elementsToBind.hover(dOAHover);
-
-            let secretPWInput = function () {
-                console.log(this.value);
-                $(document).keyup(function (e) {
-                    if (this.value === "keycode:")
-                })
-            }
+            // elementsToBind.off("keyup", "keycode: === 27");
         }
 
         addDOAHover(container);
 
+        // let passwordForm = $("input");
+        let dOMInput = $(document);
+
+        let mainMenu = function () {
+            $(document).keyup(function (e) {
+                if (e.keyCode === 27) {
+                    alert("Refresh page to begin new game");
+                }
+            });
+        }
+
+        mainMenu(dOMInput);
+
+
+        let secretHiddenPW = function () {
+            let konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 65, 66, 13]
+            let count = 0;
+            let start = false;
+
+            $(document).keypress(function (e) {
+                let codeReset = function () {
+                    start = false;
+                    count = 0;
+                    return;
+                };
+
+                let keyInput = e.value;
+                console.log(keyInput);
+
+                if (!start) {
+                    if (keyInput === 38) {
+                        start = true;
+                    }
+                }
+
+                if (start) {
+                    if (konamiCode[count] === keyInput) {
+                        count += 1;
+                    } else {
+                        codeReset();
+                    }
+                    if (count == 11) {
+                        alert("You have added 30 lives!");
+                        codeReset();
+                    }
+                } else {
+                    codeReset();
+                }
+
+                // dOMInput.validate( {
+                //     rules: {
+                //         equalTo: [
+                //             e.which === 38,
+                //             e.which === 38,
+                //             e.which === 40,
+                //             e.which === 40,
+                //             e.which === 37,
+                //             e.which === 39,
+                //             e.which === 37,
+                //             e.which === 39,
+                //             e.which === 65,
+                //             e.which === 66,
+                //             e.which === 13,
+                //         ]
+                //     },
+                // messages: {
+                //     password: {
+                //
+                //     }
+                // }
+                // })
+                //     if (e.which === 38) {
+                //         if (e.which === 38) {
+                //             if (e.which === 40) {
+                //                 if (e.which === 40) {
+                //                     if (e.which === 37) {
+                //                         if (e.which === 39) {
+                //                             if (e.which === 37) {
+                //                                 if (e.which === 39) {
+                //                                     if (e.which === 65) {
+                //                                         if (e.which === 66) {
+                //                                             if (e.which === 13) {
+                //                                                 alert("grats");
+                //                                             }
+                //                                         }
+                //                                     }
+                //                                 }
+                //                             }
+                //                         }
+                //                     }
+                //                 }
+                //             }
+                //         }
+                //     }
+            })
+        }
+        // switch (secretPW) {
+        //     case "up1":
+        //         e.keyCode = 38;
+        //         break;
+        //     case "up2":
+        //         e.keyCode = 38;
+        //         break;
+        //     case "down1":
+        //         e.keyCode = 40;
+        //         break;
+        //     case "down2":
+        //         e.keyCode = 40;
+        //         break;
+        //     case "left1":
+        //         e.keyCode = 37;
+        //         break;
+        //     case "right1":
+        //         e.keyCode = 39;
+        //         break;
+        //     case "left2":
+        //         e.keyCode = 37;
+        //         break;
+        //     case "right2":
+        //         e.keyCode = 39;
+        //         break;
+        //     case "a":
+        //         e.keyCode = 65;
+        //         break;
+        //     case "b":
+        //         e.keyCode = 66;
+        //         break;
+        //     case "enter":
+        //         e.keyCode = 13;
+        //         break;
+        //     default:
+        //         location.reload();
+        // }
+        // });
+
+
+        secretHiddenPW(dOMInput);
 
 
     })();
