@@ -39,30 +39,57 @@ $(document).ready(function () {
     // $(".codeup").css({"border": "1px solid red", "background-color": "#333333"});
 
 
-
     // jQuery events
-    // Mouse events
-    let headerOne = $("h1");
-    let changeBGOnClick = function () {
-        $(this).css("background-color", "beige");
-    }
-    headerOne.click(changeBGOnClick);
+    // // Mouse events
+    // let headerOne = $("h1");
+    // let changeBGOnClick = function () {
+    //     $(this).css("background-color", "beige");
+    // }
+    // headerOne.click(changeBGOnClick);
+    //
+    // let paragraphs = $("p");
+    // let changeFontSizeDblClick = function () {
+    //     $(this).css("font-size", "18px");
+    // }
+    // paragraphs.dblclick(changeFontSizeDblClick);
+    //
+    // let listItems = $("li");
+    // let onMouseHover = function () {
+    //     $(this).css("color", "red");
+    // }
+    // let offMouseHover = function () {
+    //     $(this).css("color", "");
+    // }
+    // listItems.hover(onMouseHover, offMouseHover);
 
-    let paragraphs = $("p");
-    let changeFontSizeDblClick = function () {
-        $(this).css("font-size", "18px");
-    }
-    paragraphs.dblclick(changeFontSizeDblClick);
 
-    let listItems = $("li");
-    let onMouseHover = function () {
-        $(this).css("color", "red");
-    }
-    let offMouseHover = function () {
-        $(this).css("color", "");
-    }
-    listItems.hover(onMouseHover, offMouseHover);
+    // Keyboard events
+    (function () {
 
+        let container = $(".container");
+
+        function addDOAHover(elementsToBind) {
+            let dOAHover = function () {
+                elementsToBind.css("background-color", "")
+                $(this).css({
+                    "padding": "400px",
+                    // "background": "linearGradient, white",
+                    "background-color": "#db2525",
+                    "transition": "3s"
+                });
+                $(this).html("<h1> You have died!</h1> <h1>Enter password to continue, or esc to return to main menu...</h1>").css({
+                    "width": "300px",
+                    "height": "100px",
+                })
+            }
+            elementsToBind.hover(dOAHover);
+        }
+
+        addDOAHover(container);
+
+        alert($)
+
+    })();
 
 
 });
