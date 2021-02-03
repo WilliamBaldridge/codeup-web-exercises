@@ -70,7 +70,6 @@ $(document).ready(function () {
 
         function addDOAHover(elementsToBind) {
             let dOAHover = function () {
-                elementsToBind.css("background-color", "")
                 $(this).css({
                     "padding": "400px",
                     // "background": "linearGradient, white",
@@ -80,14 +79,21 @@ $(document).ready(function () {
                 $(this).html("<h1> You have died!</h1> <h1>Enter password to continue, or esc to return to main menu...</h1>").css({
                     "width": "300px",
                     "height": "100px",
-                })
+                });
             }
             elementsToBind.hover(dOAHover);
+
+            let secretPWInput = function () {
+                console.log(this.value);
+                $(document).keyup(function (e) {
+                    if (this.value === "keycode:")
+                })
+            }
         }
 
         addDOAHover(container);
 
-        alert($)
+
 
     })();
 
