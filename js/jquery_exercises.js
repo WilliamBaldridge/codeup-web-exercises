@@ -73,9 +73,8 @@ $(document).ready(function () {
             let dOAHover = function () {
                 $(this).css({
                     "padding": "400px",
-                    // "background": "linearGradient, white",
                     "background-color": "#db2525",
-                    "transition": "3s"
+                    "transition": "3s",
                 });
                 $(this).html("<h1> You have died!</h1> <h1>Enter password to continue, or esc to return to main menu...</h1>").css({
                     "width": "300px",
@@ -83,12 +82,10 @@ $(document).ready(function () {
                 });
             }
             elementsToBind.hover(dOAHover);
-            // elementsToBind.off("keyup", "keycode: === 27");
         }
 
         addDOAHover(container);
 
-        // let passwordForm = $("input");
         let dOMInput = $(document);
 
         let mainMenu = function () {
@@ -101,20 +98,19 @@ $(document).ready(function () {
 
         mainMenu(dOMInput);
 
-
+        //https://codepen.io/kmaida/pen/oCkpt
         let secretHiddenPW = function () {
-            let konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 65, 66, 13]
+            let konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13]
             let count = 0;
             let start = false;
 
-            $(document).keypress(function (e) {
+            $(document).keyup(function (e) {
                 let codeReset = function () {
                     start = false;
                     count = 0;
-                    return;
                 };
 
-                let keyInput = e.value;
+                let keyInput = e.keyCode;
                 console.log(keyInput);
 
                 if (!start) {
@@ -129,101 +125,15 @@ $(document).ready(function () {
                     } else {
                         codeReset();
                     }
-                    if (count == 11) {
+                    if (count === 11) {
                         alert("You have added 30 lives!");
                         codeReset();
                     }
                 } else {
                     codeReset();
                 }
-
-                // dOMInput.validate( {
-                //     rules: {
-                //         equalTo: [
-                //             e.which === 38,
-                //             e.which === 38,
-                //             e.which === 40,
-                //             e.which === 40,
-                //             e.which === 37,
-                //             e.which === 39,
-                //             e.which === 37,
-                //             e.which === 39,
-                //             e.which === 65,
-                //             e.which === 66,
-                //             e.which === 13,
-                //         ]
-                //     },
-                // messages: {
-                //     password: {
-                //
-                //     }
-                // }
-                // })
-                //     if (e.which === 38) {
-                //         if (e.which === 38) {
-                //             if (e.which === 40) {
-                //                 if (e.which === 40) {
-                //                     if (e.which === 37) {
-                //                         if (e.which === 39) {
-                //                             if (e.which === 37) {
-                //                                 if (e.which === 39) {
-                //                                     if (e.which === 65) {
-                //                                         if (e.which === 66) {
-                //                                             if (e.which === 13) {
-                //                                                 alert("grats");
-                //                                             }
-                //                                         }
-                //                                     }
-                //                                 }
-                //                             }
-                //                         }
-                //                     }
-                //                 }
-                //             }
-                //         }
-                //     }
-            })
+            });
         }
-        // switch (secretPW) {
-        //     case "up1":
-        //         e.keyCode = 38;
-        //         break;
-        //     case "up2":
-        //         e.keyCode = 38;
-        //         break;
-        //     case "down1":
-        //         e.keyCode = 40;
-        //         break;
-        //     case "down2":
-        //         e.keyCode = 40;
-        //         break;
-        //     case "left1":
-        //         e.keyCode = 37;
-        //         break;
-        //     case "right1":
-        //         e.keyCode = 39;
-        //         break;
-        //     case "left2":
-        //         e.keyCode = 37;
-        //         break;
-        //     case "right2":
-        //         e.keyCode = 39;
-        //         break;
-        //     case "a":
-        //         e.keyCode = 65;
-        //         break;
-        //     case "b":
-        //         e.keyCode = 66;
-        //         break;
-        //     case "enter":
-        //         e.keyCode = 13;
-        //         break;
-        //     default:
-        //         location.reload();
-        // }
-        // });
-
-
         secretHiddenPW(dOMInput);
 
 
