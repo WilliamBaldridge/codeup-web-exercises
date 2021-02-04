@@ -63,7 +63,7 @@ $(document).ready(function () {
     // listItems.hover(onMouseHover, offMouseHover);
 
 
-    // Keyboard events
+    // Keyboard events (Konami code exercise)
     (function () {
 
         let container = $(".container");
@@ -92,6 +92,11 @@ $(document).ready(function () {
             $(document).keyup(function (e) {
                 if (e.keyCode === 27) {
                     alert("Refresh page to begin new game");
+                    $("container").hide("container");
+                    $("body").css({
+                        "background-image": "url('img/contra-menu.jpg')",
+                        "background-size": "cover"
+                    });
                 }
             });
         }
@@ -135,7 +140,6 @@ $(document).ready(function () {
             });
         }
         secretHiddenPW(dOMInput);
-
 
     })();
 
