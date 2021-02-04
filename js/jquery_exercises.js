@@ -64,84 +64,113 @@ $(document).ready(function () {
 
 
     // Keyboard events (Konami code exercise)
-    (function () {
+    // (function () {
+    //
+    //     let container = $(".container");
+    //
+    //     function addDOAHover(elementsToBind) {
+    //
+    //         let dOAHover = function () {
+    //             $(this).css({
+    //                 "padding": "400px",
+    //                 "background-color": "#db2525",
+    //                 "transition": "3s",
+    //             });
+    //             $(this).html("<h1> You have died!</h1> <h1>Enter password to continue, or esc to return to main menu...</h1>").css({
+    //                 "width": "300px",
+    //                 "height": "100px",
+    //             });
+    //         }
+    //         elementsToBind.hover(dOAHover);
+    //     }
+    //
+    //     addDOAHover(container);
+    //
+    //     let dOMInput = $(document);
+    //
+    //     let mainMenu = function () {
+    //         $(document).keyup(function (e) {
+    //             if (e.keyCode === 27) {
+    //                 alert("Refresh page to begin new game");
+    //                 $("container").hide("container");
+    //                 $("body").css({
+    //                     "background-image": "url('img/contra-menu.jpg')",
+    //                     "background-size": "cover"
+    //                 });
+    //             }
+    //         });
+    //     }
+    //
+    //     mainMenu(dOMInput);
+    //
+    //     //https://codepen.io/kmaida/pen/oCkpt
+    //     let secretHiddenPW = function () {
+    //         let konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13]
+    //         let count = 0;
+    //         let start = false;
+    //
+    //         $(document).keyup(function (e) {
+    //             let codeReset = function () {
+    //                 start = false;
+    //                 count = 0;
+    //             };
+    //
+    //             let keyInput = e.keyCode;
+    //             console.log(keyInput);
+    //
+    //             if (!start) {
+    //                 if (keyInput === 38) {
+    //                     start = true;
+    //                 }
+    //             }
+    //
+    //             if (start) {
+    //                 if (konamiCode[count] === keyInput) {
+    //                     count += 1;
+    //                 } else {
+    //                     codeReset();
+    //                 }
+    //                 if (count === 11) {
+    //                     alert("You have added 30 lives!");
+    //                     codeReset();
+    //                 }
+    //             } else {
+    //                 codeReset();
+    //             }
+    //         });
+    //     }
+    //     secretHiddenPW(dOMInput);
+    //
+    // })();
 
-        let container = $(".container");
 
-        function addDOAHover(elementsToBind) {
+    // jQuery Essential Methods
+    $("dl, dd").css("padding", "8px");
+    $("ul").css("padding", "0").css("margin-top", "0px");
 
-            let dOAHover = function () {
-                $(this).css({
-                    "padding": "400px",
-                    "background-color": "#db2525",
-                    "transition": "3s",
-                });
-                $(this).html("<h1> You have died!</h1> <h1>Enter password to continue, or esc to return to main menu...</h1>").css({
-                    "width": "300px",
-                    "height": "100px",
-                });
-            }
-            elementsToBind.hover(dOAHover);
-        }
 
-        addDOAHover(container);
+    $("dd").addClass("invisible");
+    $("#toggle-visibility").click(function () {
+        $("dd").toggleClass("invisible");
+    });
 
-        let dOMInput = $(document);
+    $("dt").click(function () {
+        $(this).css("background-color", "yellow");
+    });
 
-        let mainMenu = function () {
-            $(document).keyup(function (e) {
-                if (e.keyCode === 27) {
-                    alert("Refresh page to begin new game");
-                    $("container").hide("container");
-                    $("body").css({
-                        "background-image": "url('img/contra-menu.jpg')",
-                        "background-size": "cover"
-                    });
-                }
-            });
-        }
+    $("#list-item-font-color").click(function () {
+        $("ul").each(function () {
+            $(this).children().last().css("backgroundColor", "yellow");
+        });
+    });
 
-        mainMenu(dOMInput);
+    $('h3').click(function () {
+        $(this).next().children().css('font-weight', 'bold');
+    });
 
-        //https://codepen.io/kmaida/pen/oCkpt
-        let secretHiddenPW = function () {
-            let konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13]
-            let count = 0;
-            let start = false;
-
-            $(document).keyup(function (e) {
-                let codeReset = function () {
-                    start = false;
-                    count = 0;
-                };
-
-                let keyInput = e.keyCode;
-                console.log(keyInput);
-
-                if (!start) {
-                    if (keyInput === 38) {
-                        start = true;
-                    }
-                }
-
-                if (start) {
-                    if (konamiCode[count] === keyInput) {
-                        count += 1;
-                    } else {
-                        codeReset();
-                    }
-                    if (count === 11) {
-                        alert("You have added 30 lives!");
-                        codeReset();
-                    }
-                } else {
-                    codeReset();
-                }
-            });
-        }
-        secretHiddenPW(dOMInput);
-
-    })();
+    $('li').click(function () {
+        $(this).parent().children().first().css('color', 'blue');
+    })
 
 
 });
