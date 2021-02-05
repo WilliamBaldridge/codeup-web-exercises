@@ -30,5 +30,26 @@
             "tool"
         ],
         "price": 10
+    }, {
+        "title": "Impact Wrench",
+        "quantity": 2,
+        "categories": [
+            "tool"
+        ],
+        "price": 125
+    }, {
+        "title": "Torque Wrench",
+        "quantity": 1,
+        "categories": [
+         "tool"
+        ],
+        "price": 500
+    }, {
+        "title": "10pc. 3/8\" Drive Flex Sockets",
+        "quantity": 1,
+        "categories": [
+            "tool"
+        ],
+        "price": 375
     }
 ]
