@@ -1,19 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
     <title>Mapbox API Exercise</title>
-    <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.css' rel='stylesheet'/>
-
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/mapbox_exercise.css">
 </head>
 <body>
 
+<div id="map"></div>
 
-
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script src="js/keys.js"></script>
-<script src="js/geocode_utility.js"></script>
+<script src="js/mapbox_utility.js"></script>
+
+<script>
+    // $.get("data/mapbox_exercise.json")
+    //     .done(handleResponse);
+    //
+    // function handleResponse(restaurants) {
+    //     let restaurantInfo = "";
+    //     restaurants.forEach(function(restaurant) {
+    //         let restaurantLocation = restaurant.geolocation + "";
+    //         let restaurantName = restaurant.name + "";
+    //         let restaurantAddress = restaurant.address + "";
+    //         marker = new mapboxgl.Marker()
+    //             .setLngLat(restaurant.geolocation)
+    //             .setPopup(popup)
+    //             .addTo(map);
+    //         console.log( marker + restaurantInfo)
+    //     });
+    // }
+
+
+    mapboxgl.accessToken = mapboxToken;
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [-106.1585, 31.5023],
+        zoom: 9
+    });
+
+    map.addControl(new mapboxgl.NavigationControl());
+
+    var popup = new mapboxgl.Popup({ offset: 25 }).setHTML(
+        "<h1> Cattleman's Steakhouse at Indian Cliffs </h1>"
+        );
+
+    var marker = new mapboxgl.Marker()
+        .setLngLat([-106.0, 31.5629])
+        .setPopup(popup)
+        .addTo(map);
+
+    geocode("3450 S Fabens Carlsbad Rd, Fabens, TX 79838", mapboxToken).then(function(data) {
+        var cattlemansMarker = new mapboxgl.Marker()
+            .setLngLat(data)
+            .addTo(map);
+            console.log(data);
+    });
+
+    geocode("301 E Houston St, San Antonio, TX 78205", mapboxToken).then(function(data) {
+        var laPanderiaMarker = new mapboxgl.Marker()
+            .setLngLat(data)
+            .addTo(map);
+        console.log(data)
+    });
+
+    reverseGeocode({lng: -106.066, lat: 31.560}, mapboxToken).then(function(data) {
+        console.log(data);
+    });
+
+
+</script>
 
 </body>
 </html>
