@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.css' rel='stylesheet'/>
+
+    <style>
+        #map {
+            width: 400px;
+            height: 70vh;
+            margin: 15vh auto;
+            border: 5px solid black
+        }
+    </style>
+
+</head>
+<body>
+
+<div id='map' style=''></div>
+<script src="js/keys.js"></script>
+<!--<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>-->
+<script>
+    mapboxgl.accessToken = mapboxToken;
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+        center: [-98.49, 29.42], // starting position [lng, lat]
+        zoom: 9 // starting zoom
+    });
+
+    var marker = new mapboxgl.Marker()
+        .setLngLat([-98.4737, 29.4624])
+        .addTo(map);
+
+    map.addControl(new mapboxgl.NavigationControl());
+
+    // map.addControl(
+    //     new MapboxGeocoder({
+    //         accessToken: mapboxgl.accessToken,
+    //         mapboxgl: mapboxgl
+    //     })
+    //     );
+
+    function geocode(search, token) {
+        var baseUrl = "https://api.mapbox.com";
+        var endPoint = "/geocoding/v5/mapbox.places";
+        return fetch(baseUrl + endPoint + encodeURIComponent(search) + ".json" + "?" + "access_token=" + token)
+            .then(function (res) {
+                return res.json();
+            })
+            .then(function (data) {
+                return data.features[0].center;
+            });
+    }
+
+    function reverseGeocode(search, token) {
+        var baseUrl = "https://api.mapbox.com";
+        var endPoint = "/geocoding/v5/mapbox.places";
+        return fetch(baseUrl + endPoint + encodeURIComponent(search) + ".json" + "?" + "access_token=" + token)
+            .then(function (res) {
+                return res.json();
+            })
+            .then(function (data) {
+                return data.features[0].;
+            });
+    }
+
+    geocode("600 Navarro St #600, San Antonio, TX 78250", mapboxToken).then(function (data) {
+        var codeupMarker = new mapboxgl.Marker()
+            .setLngLat(data)
+            .addTo(map);
+    });
+
+    reverseGeocode({lng: -97.9414, lat: 29.8833}, mapboxToken).then(function (data) {
+        console.log(data);
+    });
+
+</script>
+
+
+</body>
+</html>
