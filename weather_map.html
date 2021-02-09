@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <title>Weather Map Project</title>
 
-    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no"/>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.js"></script>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.css" rel="stylesheet" />
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.css" rel="stylesheet"/>
     <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.min.js'></script>
-    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.css' type='text/css' />
+    <link rel='stylesheet'
+          href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.css'
+          type='text/css'/>
     <link rel="stylesheet" href="css/weather_map.css">
 
 
@@ -17,7 +19,7 @@
 
 <div class='sidebar'>
     <div class='heading'>
-        <h1>Weather</h1>
+        <h1>Local Weather</h1>
     </div>
     <div id='listings' class='listings'></div>
 </div>
@@ -26,35 +28,16 @@
 <script src="js/jquery-3.5.1.js"></script>
 <script src="js/keys.js"></script>
 <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
-<script src="js/weather_map.js"></script>
+<script src="js/mapbox_utility.js"></script>
 
 <script>
 
-    $.get("https://api.openweathermap.org/data/2.5/onecall?lat=29.4241&lon=-98.4936&units=imperial&exclude=minutely,hourly&appid=" + WEATHER_MAP_TOKEN).done(function (data) {
+    $.get("https://api.openweathermap.org/data/2.5/onecall?lat=29.5&lon=-97.8&units=imperial&exclude=minutely,hourly&appid=" + WEATHER_MAP_TOKEN).done(function (data) {
         console.log(data);
+        // $("#listings").html("<p> ")
     });
 
-    mapboxgl.accessToken = MAPBOX_TOKEN;
-
-    var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [-98.49, 29.50],
-        zoom: 9,
-        // scrollZoom: false
-    });
-
-    map.on("load", function (e) {
-        var geocoder = new MapboxGeocoder({
-            accessToken: mapboxgl.accessToken, // Set the access token
-            mapboxgl: mapboxgl, // Set the mapbox-gl instance
-            marker: true, // Use the geocoder's default marker style
-            // bbox: [-77.210763, 38.803367, -76.853675, 39.052643] // Set the bounding box coordinates
-        });
-
-        map.addControl(geocoder, 'top-left');
-    });
-
+    // Open weather API call in object format, but exclusions do not work properly...
     // $.get("https://api.openweathermap.org/data/2.5/onecall?", {
     //     APPID: WEATHER_MAP_TOKEN,
     //     lat: 29.4241,
@@ -64,6 +47,77 @@
     // }).done(function(data) {
     //     console.log(data);
     // });
+
+    mapboxgl.accessToken = MAPBOX_TOKEN;
+
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/williambaldridge/ckkyb7dzt2kvb17qo6sc7vhcv',
+        center: [-98.49, 29.50],
+        zoom: 7,
+    });
+
+    map.on("load", function (e) {
+        var geocoder = new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken, // Set the access token
+            mapboxgl: mapboxgl, // Set the mapbox-gl instance
+            marker: false, // Use the geocoder's default marker style
+        });
+        map.addControl(new mapboxgl.NavigationControl());
+        map.addControl(geocoder, 'top-left');
+        console.log(geocoder);
+        // console.log(JSON.stringify(geocoder.geocoderService.inputString));
+        // console.log(geocoder.inputString);
+    });
+
+    // var searchInput = function() {
+    //     document.addEventListener('change', function (e) {
+    //         if (e.target.className.indexOf('mapboxgl-ctrl-geocoder--input') !== -1) {
+    //             console.log(e.target.value);
+    //             return e.target.value;
+    //         }
+    //     });
+    // }
+
+    var searchInput = function() {
+        document.addEventListener('change', function (e) {
+            if (e.target.className.indexOf('mapboxgl-ctrl-geocoder--input') !== -1) {
+                console.log(e.target.value);
+                geocode(e.target.value, MAPBOX_TOKEN).then(function (data) {
+                    var geocoderSearch = new mapboxgl.Marker()
+                        .setLngLat(data)
+                        .addTo(map);
+                    console.log(data);
+                    // return data;
+                    var latitude = data[0];
+                    var longitude = data[1];
+                    console.log(latitude);
+                    console.log(longitude);
+
+                    // return latitude + longitude;
+                });
+                // console.log(searchInput());
+            }
+
+        });
+    }
+
+    // var searchInput = document.addEventListener('change', function(e) {
+    //     if (e.target.className.indexOf('mapboxgl-ctrl-geocoder--input') !== -1) {
+    //         console.log(e.target.value);
+    //         // return e.target.value;
+    //         geocode(searchInput, MAPBOX_TOKEN).then(function(data) {
+    //             var geocoderSearch = new mapboxgl.Marker()
+    //                 .setLngLat(data)
+    //                 .addTo(map);
+    //             console.log(data);
+    //         });
+    //     }
+    // });
+
+
+    console.log(searchInput());
+
 
 </script>
 
