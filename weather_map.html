@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Map Project</title>
+
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.css" rel="stylesheet" />
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.min.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.css' type='text/css' />
+    <link rel="stylesheet" href="css/weather_map.css">
+
+
+</head>
+<body>
+
+<div class='sidebar'>
+    <div class='heading'>
+        <h1>Weather</h1>
+    </div>
+    <div id='listings' class='listings'></div>
+</div>
+<div id="map" class="map markers"></div>
+
+<script src="js/jquery-3.5.1.js"></script>
+<script src="js/keys.js"></script>
+<script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+<script src="js/weather_map.js"></script>
+
+<script>
+
+    $.get("https://api.openweathermap.org/data/2.5/onecall?lat=29.4241&lon=-98.4936&units=imperial&exclude=minutely,hourly&appid=" + WEATHER_MAP_TOKEN).done(function (data) {
+        console.log(data);
+    });
+
+    mapboxgl.accessToken = MAPBOX_TOKEN;
+
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [-98.49, 29.50],
+        zoom: 9,
+        // scrollZoom: false
+    });
+
+    map.on("load", function (e) {
+        var geocoder = new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken, // Set the access token
+            mapboxgl: mapboxgl, // Set the mapbox-gl instance
+            marker: true, // Use the geocoder's default marker style
+            // bbox: [-77.210763, 38.803367, -76.853675, 39.052643] // Set the bounding box coordinates
+        });
+
+        map.addControl(geocoder, 'top-left');
+    });
+
+    // $.get("https://api.openweathermap.org/data/2.5/onecall?", {
+    //     APPID: WEATHER_MAP_TOKEN,
+    //     lat: 29.4241,
+    //     lon: -98.4936,
+    //     units: "imperial",
+    //     exclude: ["minutely", "hourly"]
+    // }).done(function(data) {
+    //     console.log(data);
+    // });
+
+</script>
+
+</body>
+</html>
