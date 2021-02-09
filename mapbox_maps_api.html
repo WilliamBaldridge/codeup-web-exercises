@@ -6,71 +6,103 @@
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.css" rel="stylesheet" />
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.min.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.css' type='text/css' />
     <link rel="stylesheet" href="css/mapbox_exercise.css">
 </head>
 <body>
 
-<div id="map"></div>
+<div class='sidebar'>
+    <div class='heading'>
+        <h1>My Favorite Restaurants</h1>
+    </div>
+    <div id='listings' class='listings'></div>
+</div>
+<div id="map" class="map markers"></div>
+
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script src="js/keys.js"></script>
+<script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
 <script src="js/mapbox_utility.js"></script>
 
 <script>
-    // $.get("data/mapbox_exercise.json")
-    //     .done(handleResponse);
-    //
-    // function handleResponse(restaurants) {
-    //     let restaurantInfo = "";
-    //     restaurants.forEach(function(restaurant) {
-    //         let restaurantLocation = restaurant.geolocation + "";
-    //         let restaurantName = restaurant.name + "";
-    //         let restaurantAddress = restaurant.address + "";
-    //         marker = new mapboxgl.Marker()
-    //             .setLngLat(restaurant.geolocation)
-    //             .setPopup(popup)
-    //             .addTo(map);
-    //         console.log( marker + restaurantInfo)
-    //     });
-    // }
+    let mapUrl = "data/mapbox_exercise.json";
+    mapboxgl.accessToken = MAPBOX_TOKEN;
+
+    function mapMarkerData() {
+        let locationData = $.get(mapUrl);
+        locationData.done(function(data) {
+            data.forEach(function (restaurant) {
+                var markers = new mapboxgl.Marker()
+                    .setLngLat(restaurant.geoLocation)
+                    .addTo(map);
+            });
+        });
 
 
-    mapboxgl.accessToken = mapboxToken;
+        // restaurants.forEach(function(restaurant) {
+        //     marker = new mapboxgl.Marker()
+        //         .setLngLat([restaurant.long, restaurant.lat])
+        //         .setPopup(popup)
+        //         .addTo(map);
+        //     console.log( marker + restaurantInfo)
+        // });
+    }
+
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
-        center: [-106.1585, 31.5023],
-        zoom: 9
+        center: [-98.49, 29.50],
+        zoom: 9,
+        // scrollZoom: false
     });
+
+    map.on("load", function (e) {
+        var geocoder = new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken, // Set the access token
+            mapboxgl: mapboxgl, // Set the mapbox-gl instance
+            marker: true, // Use the geocoder's default marker style
+            // bbox: [-77.210763, 38.803367, -76.853675, 39.052643] // Set the bounding box coordinates
+        });
+
+        map.addControl(geocoder, 'top-left');
+    });
+
+    // var map = new mapboxgl.Map({
+    //     container: 'map',
+    //     style: 'mapbox://styles/mapbox/streets-v11',
+    //     center: [-106.1585, 31.5023],
+    //     zoom: 9
+    // });
 
     map.addControl(new mapboxgl.NavigationControl());
 
-    var popup = new mapboxgl.Popup({ offset: 25 }).setHTML(
-        "<h1> Cattleman's Steakhouse at Indian Cliffs </h1>"
-        );
+    // var popup = new mapboxgl.Popup({ offset: 25 }).setHTML(
+    //     "<h1> Cattleman's Steakhouse at Indian Cliffs </h1>");
 
-    var marker = new mapboxgl.Marker()
-        .setLngLat([-106.0, 31.5629])
-        .setPopup(popup)
-        .addTo(map);
+    // var marker = new mapboxgl.Marker()
+    //     .setLngLat([-106.0, 31.5629])
+    //     .setPopup(popup)
+    //     .addTo(map);
 
-    geocode("3450 S Fabens Carlsbad Rd, Fabens, TX 79838", mapboxToken).then(function(data) {
-        var cattlemansMarker = new mapboxgl.Marker()
-            .setLngLat(data)
-            .addTo(map);
-            console.log(data);
-    });
-
-    geocode("301 E Houston St, San Antonio, TX 78205", mapboxToken).then(function(data) {
-        var laPanderiaMarker = new mapboxgl.Marker()
-            .setLngLat(data)
-            .addTo(map);
-        console.log(data)
-    });
-
-    reverseGeocode({lng: -106.066, lat: 31.560}, mapboxToken).then(function(data) {
-        console.log(data);
-    });
+    // geocode("3450 S Fabens Carlsbad Rd, Fabens, TX 79838", mapboxToken).then(function(data) {
+    //     var cattlemansMarker = new mapboxgl.Marker()
+    //         .setLngLat(data)
+    //         .addTo(map);
+    //         console.log(data);
+    // });
+    //
+    // geocode("301 E Houston St, San Antonio, TX 78205", mapboxToken).then(function(data) {
+    //     var laPanderiaMarker = new mapboxgl.Marker()
+    //         .setLngLat(data)
+    //         .addTo(map);
+    //     console.log(data)
+    // });
+    //
+    // reverseGeocode({lng: -106.066, lat: 31.560}, mapboxToken).then(function(data) {
+    //     console.log(data);
+    // });
 
 
 </script>
