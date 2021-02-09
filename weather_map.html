@@ -32,75 +32,121 @@
 
 <script>
 
-    $.get("https://api.openweathermap.org/data/2.5/onecall?lat=29.5&lon=-97.8&units=imperial&exclude=minutely,hourly&appid=" + WEATHER_MAP_TOKEN).done(function (data) {
-        console.log(data);
-        // $("#listings").html("<p> ")
-    });
-
-    // Open weather API call in object format, but exclusions do not work properly...
-    // $.get("https://api.openweathermap.org/data/2.5/onecall?", {
-    //     APPID: WEATHER_MAP_TOKEN,
-    //     lat: 29.4241,
-    //     lon: -98.4936,
-    //     units: "imperial",
-    //     exclude: ["minutely", "hourly"]
-    // }).done(function(data) {
+    // $.get("https://api.openweathermap.org/data/2.5/onecall?lat=29.5&lon=-97.8&units=imperial&exclude=minutely,hourly&appid=" + WEATHER_MAP_TOKEN).done(function (data) {
     //     console.log(data);
     // });
-
     mapboxgl.accessToken = MAPBOX_TOKEN;
 
-    var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/williambaldridge/ckkyb7dzt2kvb17qo6sc7vhcv',
-        center: [-98.49, 29.50],
-        zoom: 7,
-    });
+    weatherData();
 
-    map.on("load", function (e) {
-        var geocoder = new MapboxGeocoder({
-            accessToken: mapboxgl.accessToken, // Set the access token
-            mapboxgl: mapboxgl, // Set the mapbox-gl instance
-            marker: false, // Use the geocoder's default marker style
-        });
-        map.addControl(new mapboxgl.NavigationControl());
-        map.addControl(geocoder, 'top-left');
-        console.log(geocoder);
-        // console.log(JSON.stringify(geocoder.geocoderService.inputString));
-        // console.log(geocoder.inputString);
-    });
+    function weatherData() {
+        $.get("https://api.openweathermap.org/data/2.5/onecall?", {
+            APPID: WEATHER_MAP_TOKEN,
+            lat: 29.4241,
+            lon: -98.4936,
+            units: "imperial",
+            exclude: "minutely, hourly"
+        }).done(function (data) {
+            console.log(data);
+            console.log(data.daily[0]);
+            console.log(data.daily[0].temp.min);
 
-    // var searchInput = function() {
-    //     document.addEventListener('change', function (e) {
-    //         if (e.target.className.indexOf('mapboxgl-ctrl-geocoder--input') !== -1) {
-    //             console.log(e.target.value);
-    //             return e.target.value;
-    //         }
-    //     });
-    // }
 
-    var searchInput = function() {
-        document.addEventListener('change', function (e) {
-            if (e.target.className.indexOf('mapboxgl-ctrl-geocoder--input') !== -1) {
-                console.log(e.target.value);
-                geocode(e.target.value, MAPBOX_TOKEN).then(function (data) {
-                    var geocoderSearch = new mapboxgl.Marker()
-                        .setLngLat(data)
-                        .addTo(map);
-                    console.log(data);
-                    // return data;
-                    var latitude = data[0];
-                    var longitude = data[1];
-                    console.log(latitude);
-                    console.log(longitude);
+            var map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/williambaldridge/ckkyb7dzt2kvb17qo6sc7vhcv',
+                center: [-98.49, 29.50],
+                zoom: 7,
+            });
 
-                    // return latitude + longitude;
+            map.on("load", function (e) {
+                var geocoder = new MapboxGeocoder({
+                    accessToken: mapboxgl.accessToken, // Set the access token
+                    mapboxgl: mapboxgl, // Set the mapbox-gl instance
+                    marker: true, // Use the geocoder's default marker style
                 });
-                // console.log(searchInput());
-            }
+                map.addControl(new mapboxgl.NavigationControl());
+                map.addControl(geocoder, 'top-left');
+                console.log(geocoder);
+                console.log(geocoder.options.marker);
+                // console.log(JSON.stringify(geocoder.geocoderService.inputString));
+                // console.log(geocoder.inputString);
+            });
+            // document.addEventListener('change', function (e) {
+            //     if (e.target.className.indexOf('mapboxgl-ctrl-geocoder--input') !== -1) {
+            //         console.log(e.target.value);
+            //         geocode(e.target.value, MAPBOX_TOKEN).then(function (data) {
+            //             var geocoderSearch = new mapboxgl.Marker()
+            //                 .setLngLat(data)
+            //                 .addTo(map);
+            //             console.log(data);
+            //             // return data;
+            //             var latitude = data[0];
+            //             var longitude = data[1];
+            //             // console.log(latitude);
+            //             // console.log(longitude);
+            //
+            //             return latitude + longitude + "";
+            //         });
+            //         // console.log(searchInput);
+            //     }
+            //
+            // });
+
 
         });
     }
+
+
+    // var map = new mapboxgl.Map({
+    //     container: 'map',
+    //     style: 'mapbox://styles/williambaldridge/ckkyb7dzt2kvb17qo6sc7vhcv',
+    //     center: [-98.49, 29.50],
+    //     zoom: 7,
+    // });
+    //
+    // map.on("load", function (e) {
+    //     var geocoder = new MapboxGeocoder({
+    //         accessToken: mapboxgl.accessToken, // Set the access token
+    //         mapboxgl: mapboxgl, // Set the mapbox-gl instance
+    //         marker: false, // Use the geocoder's default marker style
+    //     });
+    //     map.addControl(new mapboxgl.NavigationControl());
+    //     map.addControl(geocoder, 'top-left');
+    //     console.log(geocoder);
+    //     // console.log(JSON.stringify(geocoder.geocoderService.inputString));
+    //     // console.log(geocoder.inputString);
+    // });
+
+    // document.addEventListener('change', function (e) {
+    //         if (e.target.className.indexOf('mapboxgl-ctrl-geocoder--input') !== -1) {
+    //             console.log(e.target.value);
+    //             // return e.target.value;
+    //         }
+    //     });
+    //
+    //     document.addEventListener('change', function (e) {
+    //         if (e.target.className.indexOf('mapboxgl-ctrl-geocoder--input') !== -1) {
+    //             console.log(e.target.value);
+    //             geocode(e.target.value, MAPBOX_TOKEN).then(function (data) {
+    //                 var geocoderSearch = new mapboxgl.Marker()
+    //                     .setLngLat(data)
+    //                     .addTo(map);
+    //                 console.log(data);
+    //                 // return data;
+    //                 var latitude = data[0];
+    //                 var longitude = data[1];
+    //                 // console.log(latitude);
+    //                 // console.log(longitude);
+    //
+    //                 return latitude + longitude + "";
+    //             });
+    //             // console.log(searchInput);
+    //         }
+    //
+    //     });
+    //
+    // }
 
     // var searchInput = document.addEventListener('change', function(e) {
     //     if (e.target.className.indexOf('mapboxgl-ctrl-geocoder--input') !== -1) {
@@ -116,7 +162,7 @@
     // });
 
 
-    console.log(searchInput());
+    // console.log(searchInput);
 
 
 </script>
