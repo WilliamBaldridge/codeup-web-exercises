@@ -25,19 +25,18 @@
         <h1>Local Weather</h1>
     </div>
     <div id='listings' class='listings'>
-        <div class="card" style="width: 18rem;">
-            <!--            <img class="card-img-top" src="" alt="">-->
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Vestibulum at eros</li>
-            </ul>
-        </div>
+<!--        <div class="card" style="width: 18rem;">-->
+<!--            &lt;!&ndash;            <img class="card-img-top" src="" alt="">&ndash;&gt;-->
+<!--            <div class="card-body">-->
+<!--                <h5 class="card-title">Card title</h5>-->
+<!--                <p class="card-text">Some quick ex.</p>-->
+<!--            </div>-->
+<!--            <ul class="list-group list-group-flush">-->
+<!--                <li class="list-group-item">Cras justo odio</li>-->
+<!--                <li class="list-group-item">Dapibus ac facilisis in</li>-->
+<!--                <li class="list-group-item">Vestibulum at eros</li>-->
+<!--            </ul>-->
+<!--        </div>-->
     </div>
 </div>
 <div id="map" class="map markers"></div>
@@ -66,6 +65,7 @@
 
     function weatherData() {
 
+        $("#listings").html("");
 
         $.get("https://api.openweathermap.org/data/2.5/onecall?", {
             APPID: WEATHER_MAP_TOKEN,
@@ -81,16 +81,17 @@
 
             // function renderWeather(data) {
             //     // data.forEach(function (el) {
-            //     for (var i = 0; i < 5; i += 1) {
-            //         var html = "";
-            //         // html += "<div id='listings' class='listings'>";
-            //         html += "<div class='card' style='width: 18rem>";
-            //         html += "<img class='card-img-top' src='' alt=''>";
-            //         html += "<div class='card-body'>";
-            //         html += "<h5 class='card-title'>" + data.daily[i] + "</h5>";
-            //         console.log(html);
-            //     }
-            //     $("#listings").html(html);
+                for (var i = 0; i < 5; i += 1) {
+                    var html = "";
+                    // html += "<div id='listings' class='listings'>";
+                    html += "<div class='card' style='width: 18rem>";
+                    html += "<img class='card-img-top' src='' alt=''>";
+                    html += "<div class='card-body'>";
+                    html += "<h5 class='card-title'>" + data.daily[i].temp.min + "</h5>";
+                    console.log(html);
+                    $("#listings").append(html);
+                }
+
             // }
 
             // });
