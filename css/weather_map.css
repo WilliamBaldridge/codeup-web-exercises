@@ -56,3 +56,17 @@ gets 2/3 of the page. You can adjust this to your personal liking. */
     line-height: 60px;
     padding: 0 10px;
 }
+
+.coordinates {
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    position: absolute;
+    bottom: 40px;
+    left: 10px;
+    padding: 5px 10px;
+    margin: 0;
+    font-size: 11px;
+    line-height: 18px;
+    border-radius: 3px;
+    display: none;
+}
