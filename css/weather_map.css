@@ -40,7 +40,7 @@ h1 {
 
 .heading {
     background: deepskyblue;
-    color: #000;
+    color: #FFF;
     font-weight: bolder;
     text-align: center;
     border-bottom: 2px solid #eee;
@@ -61,7 +61,8 @@ h1 {
     display: none;
 }
 
-
 img {
     height: 150px;
 }
+
+

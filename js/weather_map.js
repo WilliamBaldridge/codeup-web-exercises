@@ -20,7 +20,7 @@ function weatherData() {
         units: "imperial",
         exclude: "minutely, hourly"
     }).done(function (data) {
-        console.log(data);
+        // console.log(data);
 
         $("#listings").html("");
 
@@ -35,16 +35,12 @@ function weatherData() {
             }
             var weatherIcon = data.daily[i].weather[0].icon;
             var openWeatherIconSource = "http://openweathermap.org/img/w/" + weatherIcon + ".png";
-            var forecastDate = new Date(data.daily[i].dt);
-            // var forecastMonth = new Date(data.daily[i].dt).getMonth();
-            // console.log(forecastDay);
-            // console.log(forecastMonth);
+            var dateConversion = new Date(data.daily[i].dt * 1000);
+            let outputDate = dateConversion.toLocaleDateString("en-US");
 
             html += "<div class='card col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 text-center' style='width: 18rem>";
-            html += "<h5 class='card-title'>" + forecastDate + "</h5>";
-            // html += "<div class='card-body'>";
+            html += "<h3 class='card-title'>" + outputDate + "</h3>";
             html += "<img class='card-img-top' src='"+ openWeatherIconSource +"'  alt='Weather Icon'>";
-            // html += "</div>";
             html += "<ul class='list-group list-group-flush'>";
             html += "<li class='list-group-item'>H: " + data.daily[i].temp.max + " / L: " + data.daily[i].temp.min + "</li>";
             html += "<li class='list-group-item'>" + precipitation() + "% Chance of precipitation" + "</li>";
