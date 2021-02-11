@@ -13,6 +13,8 @@ function weatherData() {
 
     $.get("https://api.openweathermap.org/data/2.5/onecall?", {
         APPID: WEATHER_MAP_TOKEN,
+        layer: "PR0",
+        palette: "0.000005:FEF9CA",
         lat: latitude,
         lon: longitude,
         units: "imperial",
@@ -22,7 +24,7 @@ function weatherData() {
 
         $("#listings").html("");
 
-        for (var i = 0; i < 5; i += 1) {
+        for (var i = 0; i < 6; i += 1) {
             var html = "";
             var precipitation = function () {
                 if (isNaN(data.daily[i].rain)) {
@@ -32,11 +34,14 @@ function weatherData() {
                 }
             }
             var weatherIcon = data.daily[i].weather[0].icon;
-            console.log(weatherIcon);
             var openWeatherIconSource = "http://openweathermap.org/img/w/" + weatherIcon + ".png";
+            var forecastDate = new Date(data.daily[i].dt);
+            // var forecastMonth = new Date(data.daily[i].dt).getMonth();
+            // console.log(forecastDay);
+            // console.log(forecastMonth);
 
-            html += "<div class='card col-xs-12 col-sm-6 col-md-4 col-lg text-center' style='width: 18rem>";
-            html += "<h5 class='card-title'>Date</h5>";
+            html += "<div class='card col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 text-center' style='width: 18rem>";
+            html += "<h5 class='card-title'>" + forecastDate + "</h5>";
             // html += "<div class='card-body'>";
             html += "<img class='card-img-top' src='"+ openWeatherIconSource +"'  alt='Weather Icon'>";
             // html += "</div>";
@@ -54,6 +59,8 @@ function weatherData() {
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/williambaldridge/ckkyb7dzt2kvb17qo6sc7vhcv',
+            layer: "PR0",
+            palette: "0.000005:FEF9CA",
             center: [longitude, latitude],
             zoom: 7,
         });
