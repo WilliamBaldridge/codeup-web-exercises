@@ -24,213 +24,21 @@
     <div class='heading'>
         <h1>Local Weather</h1>
     </div>
-    <div id='listings' class='listings row'>
-<!--        <div class="card" style="width: 18rem;">-->
-<!--            &lt;!&ndash;            <img class="card-img-top" src="" alt="">&ndash;&gt;-->
-<!--            <div class="card-body">-->
-<!--                <h5 class="card-title">Card title</h5>-->
-<!--                <p class="card-text">Some quick ex.</p>-->
-<!--            </div>-->
-<!--            <ul class="list-group list-group-flush">-->
-<!--                <li class="list-group-item">Cras justo odio</li>-->
-<!--                <li class="list-group-item">Dapibus ac facilisis in</li>-->
-<!--                <li class="list-group-item">Vestibulum at eros</li>-->
-<!--            </ul>-->
-<!--        </div>-->
-    </div>
+    <div id='listings' class='listings row'></div>
 </div>
 <div id="map" class="map markers"></div>
 <pre id="coordinates" class="coordinates"></pre>
 
+
+
 <script src="js/jquery-3.5.1.js"></script>
 <script src="js/keys.js"></script>
-<!--<script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>-->
-<!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script>
 
 <script src="js/mapbox_utility.js"></script>
-
-<script>
-
-    // $.get("https://api.openweathermap.org/data/2.5/onecall?lat=29.5&lon=-97.8&units=imperial&exclude=minutely,hourly&appid=" + WEATHER_MAP_TOKEN).done(function (data) {
-    //     console.log(data);
-    // });
-
-    mapboxgl.accessToken = MAPBOX_TOKEN;
-    var latitude = 29.4241;
-    var longitude = -98.4936;
-
-
-    weatherData();
-
-    function weatherData() {
-
-        $("#listings").html("");
-
-        $.get("https://api.openweathermap.org/data/2.5/onecall?", {
-            APPID: WEATHER_MAP_TOKEN,
-            lat: latitude,
-            lon: longitude,
-            units: "imperial",
-            exclude: "minutely, hourly"
-        }).done(function (data) {
-            console.log(data);
-            // console.log(data.daily[0]);
-            // console.log(data.daily[0].temp.min);
-
-                for (var i = 0; i < 5; i += 1) {
-                    var html = "";
-                    var precipitation = Math.round(data.daily[i].rain);
-                    // var weatherIcon = data.daily[i].weather.icon;
-                    // var openWeatherIconSource = "http://openweathermap.org/img/w/" + weatherIcon + '.png';
-
-                    html += "<div class='card col-xs-12 col-sm-6 col-md-4 col-lg text-center' style='width: 18rem>";
-                    html += "<img class='card-img-top' src=''  alt='Weather Icon'>";
-                    html += "<div class='card-body'>";
-                    html += "<h5 class='card-title'>" + + "</h5>";
-                    html += "<p class='card-text'>" + + "</p>";
-                    html += "</div>";
-                    html += "<ul class='list-group list-group-flush'>";
-                    html += "<li class='list-group-item'>H: " + data.daily[i].temp.max + " / L: " + data.daily[i].temp.min + "</li>";
-                    html += "<li class='list-group-item'>" + precipitation + "% Rain" + "</li>";
-                    // html += "<li class='list-group-item'>Vestibulum at eros</li>";
-                    html += "</ul>";
-                    html += "</div>";
-                    html += "<div>";
-                    // $("img").attr("src", openWeatherIconSource);
-
-                    $("#listings").append(html);
-                }
-
-            var map = new mapboxgl.Map({
-                container: 'map',
-                style: 'mapbox://styles/williambaldridge/ckkyb7dzt2kvb17qo6sc7vhcv',
-                center: [longitude, latitude],
-                zoom: 7,
-            });
-
-            map.on("load", function (e) {
-                var geocoder = new MapboxGeocoder({
-                    accessToken: mapboxgl.accessToken, // Set the access token
-                    mapboxgl: mapboxgl, // Set the mapbox-gl instance
-                    marker: false, // Use the geocoder's default marker style
-                    flyto: false
-                });
-                map.addControl(new mapboxgl.NavigationControl());
-                map.addControl(geocoder, 'top-left');
-                // console.log(geocoder);
-            });
-
-            function geocoderEventPrep(e) {
-                if (e.target.className.indexOf('mapboxgl-ctrl-geocoder--input') !== -1) {
-                    console.log(e.target.value);
-                    geocode(e.target.value, MAPBOX_TOKEN).then(function (data) {
-                        longitude = data[0];
-                        latitude = data[1];
-                        console.log(latitude);
-                        console.log(longitude);
-
-                        weatherData();
-                    });
-                }
-            }
-
-            document.addEventListener('change', geocoderEventPrep);
-
-            var coordinates = document.getElementById('coordinates');
-
-            var geocoderMarkerDrag = new mapboxgl.Marker({
-                draggable: true
-            })
-                .setLngLat([longitude, latitude])
-                .addTo(map);
-
-            function onDragEnd() {
-                var lngLat = geocoderMarkerDrag.getLngLat();
-                coordinates.style.display = 'block';
-                coordinates.innerHTML =
-                    'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
-                latitude = lngLat.lat;
-                longitude = lngLat.lng;
-                weatherData();
-            }
-
-            geocoderMarkerDrag.on('dragend', onDragEnd);
-
-        });
-    }
-
-
-    // var map = new mapboxgl.Map({
-    //     container: 'map',
-    //     style: 'mapbox://styles/williambaldridge/ckkyb7dzt2kvb17qo6sc7vhcv',
-    //     center: [-98.49, 29.50],
-    //     zoom: 7,
-    // });
-    //
-    // map.on("load", function (e) {
-    //     var geocoder = new MapboxGeocoder({
-    //         accessToken: mapboxgl.accessToken, // Set the access token
-    //         mapboxgl: mapboxgl, // Set the mapbox-gl instance
-    //         marker: false, // Use the geocoder's default marker style
-    //     });
-    //     map.addControl(new mapboxgl.NavigationControl());
-    //     map.addControl(geocoder, 'top-left');
-    //     console.log(geocoder);
-    //     // console.log(JSON.stringify(geocoder.geocoderService.inputString));
-    //     // console.log(geocoder.inputString);
-    // });
-
-    // document.addEventListener('change', function (e) {
-    //         if (e.target.className.indexOf('mapboxgl-ctrl-geocoder--input') !== -1) {
-    //             console.log(e.target.value);
-    //             // return e.target.value;
-    //         }
-    //     });
-    //
-    //     document.addEventListener('change', function (e) {
-    //         if (e.target.className.indexOf('mapboxgl-ctrl-geocoder--input') !== -1) {
-    //             console.log(e.target.value);
-    //             geocode(e.target.value, MAPBOX_TOKEN).then(function (data) {
-    //                 var geocoderSearch = new mapboxgl.Marker()
-    //                     .setLngLat(data)
-    //                     .addTo(map);
-    //                 console.log(data);
-    //                 // return data;
-    //                 var latitude = data[0];
-    //                 var longitude = data[1];
-    //                 // console.log(latitude);
-    //                 // console.log(longitude);
-    //
-    //                 return latitude + longitude + "";
-    //             });
-    //             // console.log(searchInput);
-    //         }
-    //
-    //     });
-    //
-    // }
-
-    // var searchInput = document.addEventListener('change', function(e) {
-    //     if (e.target.className.indexOf('mapboxgl-ctrl-geocoder--input') !== -1) {
-    //         console.log(e.target.value);
-    //         // return e.target.value;
-    //         geocode(searchInput, MAPBOX_TOKEN).then(function(data) {
-    //             var geocoderSearch = new mapboxgl.Marker()
-    //                 .setLngLat(data)
-    //                 .addTo(map);
-    //             console.log(data);
-    //         });
-    //     }
-    // });
-
-
-    // console.log(searchInput);
-
-
-</script>
+<script src="js/weather_map.js"></script>
 
 </body>
 </html>
