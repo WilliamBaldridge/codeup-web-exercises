@@ -24,7 +24,7 @@
     <div class='heading'>
         <h1>Local Weather</h1>
     </div>
-    <div id='listings' class='listings'>
+    <div id='listings' class='listings row'>
 <!--        <div class="card" style="width: 18rem;">-->
 <!--            &lt;!&ndash;            <img class="card-img-top" src="" alt="">&ndash;&gt;-->
 <!--            <div class="card-body">-->
@@ -57,9 +57,11 @@
     // $.get("https://api.openweathermap.org/data/2.5/onecall?lat=29.5&lon=-97.8&units=imperial&exclude=minutely,hourly&appid=" + WEATHER_MAP_TOKEN).done(function (data) {
     //     console.log(data);
     // });
+
     mapboxgl.accessToken = MAPBOX_TOKEN;
     var latitude = 29.4241;
     var longitude = -98.4936;
+
 
     weatherData();
 
@@ -74,27 +76,33 @@
             units: "imperial",
             exclude: "minutely, hourly"
         }).done(function (data) {
-            // }).done(renderWeather)
             console.log(data);
-            console.log(data.daily[0]);
-            console.log(data.daily[0].temp.min);
+            // console.log(data.daily[0]);
+            // console.log(data.daily[0].temp.min);
 
-            // function renderWeather(data) {
-            //     // data.forEach(function (el) {
                 for (var i = 0; i < 5; i += 1) {
                     var html = "";
-                    // html += "<div id='listings' class='listings'>";
-                    html += "<div class='card' style='width: 18rem>";
-                    html += "<img class='card-img-top' src='' alt=''>";
+                    var precipitation = Math.round(data.daily[i].rain);
+                    // var weatherIcon = data.daily[i].weather.icon;
+                    // var openWeatherIconSource = "http://openweathermap.org/img/w/" + weatherIcon + '.png';
+
+                    html += "<div class='card col-xs-12 col-sm-6 col-md-4 col-lg text-center' style='width: 18rem>";
+                    html += "<img class='card-img-top' src=''  alt='Weather Icon'>";
                     html += "<div class='card-body'>";
-                    html += "<h5 class='card-title'>" + data.daily[i].temp.min + "</h5>";
-                    console.log(html);
+                    html += "<h5 class='card-title'>" + + "</h5>";
+                    html += "<p class='card-text'>" + + "</p>";
+                    html += "</div>";
+                    html += "<ul class='list-group list-group-flush'>";
+                    html += "<li class='list-group-item'>H: " + data.daily[i].temp.max + " / L: " + data.daily[i].temp.min + "</li>";
+                    html += "<li class='list-group-item'>" + precipitation + "% Rain" + "</li>";
+                    // html += "<li class='list-group-item'>Vestibulum at eros</li>";
+                    html += "</ul>";
+                    html += "</div>";
+                    html += "<div>";
+                    // $("img").attr("src", openWeatherIconSource);
+
                     $("#listings").append(html);
                 }
-
-            // }
-
-            // });
 
             var map = new mapboxgl.Map({
                 container: 'map',
