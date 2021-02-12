@@ -20,14 +20,28 @@
 
     // TODO: add the needed JS so that the number selected in the number input will be added to the number in the span
 
-    function sumTotal() {
-        let currentSum = parseInt($("#sum-output").text(), 20);
-        let inputNum = parseInt( $("#number").val());
-        currentSum += inputNum;
-        return $("#sum-output").text(currentSum);
-    }
+    // function sumTotal() {
+    //     let currentSum = parseInt($("#sum-output").text());
+    //     let inputNum = parseInt( $("#number").val());
+    //     currentSum += inputNum;
+    //     return $("#sum-output").text(currentSum);
+    // }
+    //
+    // $("#add-btn").click(sumTotal);
 
-    $("#add-btn").click(sumTotal);
+
+
+    renderSumTotal("#sum-output", "#number", "#add-btn");
+    // renderSumTotal("#sum-output2", "#number2", "#add-btn2");
+    function sumTotal(sumOutput, num) {
+        let currentSum = parseInt($(sumOutput).text());
+        let inputNum = parseInt( $(num).val());
+        currentSum += inputNum;
+        return $(sumOutput).text(currentSum);
+    }
+    function renderSumTotal(sumOutput, num, btn){
+        $(btn).click(() => sumTotal(sumOutput, num));
+    }
 
 </script>
 

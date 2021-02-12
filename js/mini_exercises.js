@@ -229,6 +229,21 @@ function firstAndLast (arr) {
 }
 
 
+// TODO: Refactor the following code to use ES6 syntax. The output should stay the same.
+// var message = '';
+//     var names = ['John', 'Paul', 'George', 'Ringo'];
+//     for (var i = 0; i < names.length; i += 1) {
+//         message += 'Hello, ' + names[i] + '\n';
+//     }
+//     console.log(message);
+
+    let message = "";
+    const names = ['John', 'Paul', 'George', 'Ringo'];
+    for (let name of names) {
+        message += `Hello, ${name} \n`;
+    }
+    console.log(message);
+
 
 
 
