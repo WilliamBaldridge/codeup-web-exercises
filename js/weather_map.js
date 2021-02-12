@@ -13,8 +13,8 @@ function weatherData() {
 
     $.get("https://api.openweathermap.org/data/2.5/onecall?", {
         APPID: WEATHER_MAP_TOKEN,
-        layer: "PR0",
-        palette: "0.000005:FEF9CA",
+        // layer: "PR0",
+        // palette: "0.000005:FEF9CA",
         lat: latitude,
         lon: longitude,
         units: "imperial",
@@ -27,10 +27,10 @@ function weatherData() {
         for (var i = 0; i < 6; i += 1) {
             var html = "";
             var precipitation = function () {
-                if (isNaN(data.daily[i].rain)) {
+                if (isNaN(data.daily[i].rain) || isNaN(data.daily[i].snow)) {
                     return 0;
                 } else {
-                    return Math.round(data.daily[i].rain);
+                    return Math.round(data.daily[i].rain) || Math.round(data.daily[i].rain);
                 }
             }
             var weatherIcon = data.daily[i].weather[0].icon;
@@ -42,7 +42,7 @@ function weatherData() {
             html += "<h3 class='card-title'>" + outputDate + "</h3>";
             html += "<img class='card-img-top' src='"+ openWeatherIconSource +"'  alt='Weather Icon'>";
             html += "<ul class='list-group list-group-flush'>";
-            html += "<li class='list-group-item'>H: " + data.daily[i].temp.max + " / L: " + data.daily[i].temp.min + "</li>";
+            html += "<li class='list-group-item'>H: " + data.daily[i].temp.max + " F / L: " + data.daily[i].temp.min + " F</li>";
             html += "<li class='list-group-item'>" + precipitation() + "% Chance of precipitation" + "</li>";
             html += "</ul>";
             html += "</div>";
@@ -55,15 +55,15 @@ function weatherData() {
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/williambaldridge/ckkyb7dzt2kvb17qo6sc7vhcv',
-            layer: "PR0",
-            palette: "0.000005:FEF9CA",
+            // layer: "PR0",
+            // palette: "0.000005:FEF9CA",
             center: [longitude, latitude],
             zoom: 7,
         });
 
         map.on("load", function (e) {
             var geocoder = new MapboxGeocoder({
-                accessToken: mapboxgl.accessToken, // Set the access token
+                accessToken: MAPBOX_TOKEN, // Set the access token
                 mapboxgl: mapboxgl, // Set the mapbox-gl instance
                 marker: false, // Use the geocoder's default marker style
             });
@@ -78,8 +78,6 @@ function weatherData() {
                 geocode(e.target.value, MAPBOX_TOKEN).then(function (data) {
                     longitude = data[0];
                     latitude = data[1];
-                    // console.log(latitude);
-                    // console.log(longitude);
 
                     weatherData();
                 });
