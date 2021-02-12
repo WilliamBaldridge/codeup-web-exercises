@@ -22,16 +22,12 @@
 
     function sumTotal() {
         let currentSum = parseInt($("#sum-output").text(), 20);
-        console.log(currentSum);
         let inputNum = parseInt( $("#number").val());
         currentSum += inputNum;
-        console.log(currentSum);
-        return currentSum;
+        return $("#sum-output").text(currentSum);
     }
 
-    $("#add-btn").click(function () {
-        $("#sum-output").text(sumTotal);
-    });
+    $("#add-btn").click(sumTotal);
 
 </script>
 
