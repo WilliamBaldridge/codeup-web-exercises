@@ -13,8 +13,6 @@ function weatherData() {
 
     $.get("https://api.openweathermap.org/data/2.5/onecall?", {
         APPID: WEATHER_MAP_TOKEN,
-        // layer: "PR0",
-        // palette: "0.000005:FEF9CA",
         lat: latitude,
         lon: longitude,
         units: "imperial",
@@ -47,7 +45,6 @@ function weatherData() {
             html += "</ul>";
             html += "</div>";
             html += "<div>";
-            // $("img").attr("src", openWeatherIconSource);
 
             $("#listings").append(html);
         }
@@ -55,8 +52,6 @@ function weatherData() {
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/williambaldridge/ckkyb7dzt2kvb17qo6sc7vhcv',
-            // layer: "PR0",
-            // palette: "0.000005:FEF9CA",
             center: [longitude, latitude],
             zoom: 7,
         });
