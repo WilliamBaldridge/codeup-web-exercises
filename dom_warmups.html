@@ -41,7 +41,7 @@
 
 
     renderSumTotal("#sum-output", "#number", "#add-btn");
-    // renderSumTotal("#sum-output2", "#number2", "#add-btn2");
+    // renderSumTotal("#sum-output2", "#number2", "#add-btn2"); able to use across multiple/new id's
     function sumTotal(sumOutput, num) {
         let currentSum = parseInt($(sumOutput).text());
         let inputNum = parseInt( $(num).val());
@@ -59,15 +59,20 @@
      displayed in the span with a class of `title-letter`.
     */
 
-    let hoverIn = function (){
-        $(".title-letter").text($(this).text().toLowerCase());
+    // let hoverEvent = "hover";
+
+    let hoverIn = function () {
+        let lowerCase = $(this).text().toLowerCase();
+        $(".title-letter").text(lowerCase);
     }
 
-    let hoverOut = function (){
+    let hoverOut = function () {
         $(".title-letter").text("");
     }
 
-    $(".letter").hover(hoverIn,hoverOut);
+    $(".letter").hover(hoverIn, hoverOut);
+    // $(".letter").on("hover", hoverIn);
+    // $(".letter").off("hover", hoverOut);
 
 
 </script>
