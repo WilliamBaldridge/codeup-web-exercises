@@ -1,12 +1,14 @@
 body {
     color: #404040;
-    font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
+    font-size: 14px;
+    font-family: 'Source Sans Pro', sans-serif;
     margin: 0;
     padding: 0;
 }
 
 h1 {
-    font-size: 22px;
+    font-size: 28px;
+    font-family: 'Akaya Kanadaka', cursive;
     margin: 0;
     font-weight: 400;
     line-height: 15px;
@@ -20,7 +22,6 @@ h1 {
     top: 0;
     left: 0;
     /*overflow: hidden;*/
-    border-right: 1px solid black;
 }
 
 .card {
@@ -39,11 +40,11 @@ h1 {
 }
 
 .heading {
-    background: deepskyblue;
+    background: #3B94D9;
     color: #FFF;
     font-weight: bolder;
     text-align: center;
-    border-bottom: 2px solid #eee;
+    border-bottom: 1px solid #848487;
     height: 50px;
 }
 
