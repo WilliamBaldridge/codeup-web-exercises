@@ -18,38 +18,38 @@ function weatherData() {
         units: "imperial",
         exclude: "minutely, hourly"
     }).done(function (data) {
-        // console.log(data);
+        console.log(data);
 
         $("#listings").html("");
 
         for (var i = 0; i < 6; i += 1) {
-            var html = "";
-            var precipitation = function () {
-                if (isNaN(data.daily[i].rain) || isNaN(data.daily[i].snow)) {
+            let html = "";
+            const precipitation = function () {
+                if (isNaN(data.daily[i].pop)) {
                     return 0;
                 } else {
-                    return Math.round(data.daily[i].rain) || Math.round(data.daily[i].rain);
+                    return data.daily[i].pop * 100;
                 }
             }
-            var weatherIcon = data.daily[i].weather[0].icon;
-            var openWeatherIconSource = "http://openweathermap.org/img/w/" + weatherIcon + ".png";
-            var dateConversion = new Date(data.daily[i].dt * 1000);
-            let outputDate = dateConversion.toLocaleDateString("en-US");
+            const weatherIcon = data.daily[i].weather[0].icon;
+            const openWeatherIconSource = "http://openweathermap.org/img/w/" + weatherIcon + ".png";
+            const dateConversion = new Date(data.daily[i].dt * 1000);
+            const outputDate = dateConversion.toLocaleDateString("en-US");
 
-            html += "<div class='card col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 text-center' style='width: 18rem>";
-            html += "<h3 class='card-title'>" + outputDate + "</h3>";
-            html += "<img class='card-img-top' src='"+ openWeatherIconSource +"'  alt='Weather Icon'>";
-            html += "<ul class='list-group list-group-flush'>";
-            html += "<li class='list-group-item'>H: " + data.daily[i].temp.max + " F / L: " + data.daily[i].temp.min + " F</li>";
-            html += "<li class='list-group-item'>" + precipitation() + "% Chance of precipitation" + "</li>";
-            html += "</ul>";
-            html += "</div>";
-            html += "<div>";
+            html += `<div class='card col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 text-center' style='width: 18rem>`;
+            html += `<h3 class='card-title'> ${outputDate} </h3>`;
+            html += `<img class='card-img-top' src='${openWeatherIconSource}'  alt='Weather Icon'>`;
+            html += `<ul class='list-group list-group-flush'>`;
+            html += `<li class='list-group-item'>H: ${parseInt(data.daily[i].temp.max)} &#176; F / L: ${parseInt(data.daily[i].temp.min)} &#176; F</li>`;
+            html += `<li class='list-group-item'> ${precipitation()} % Chance of precipitation</li>`;
+            html += `</ul>`;
+            html += `</div>`;
+            html += `<div>`;
 
             $("#listings").append(html);
         }
 
-        var map = new mapboxgl.Map({
+        const map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/williambaldridge/ckkyb7dzt2kvb17qo6sc7vhcv',
             center: [longitude, latitude],
@@ -57,7 +57,7 @@ function weatherData() {
         });
 
         map.on("load", function (e) {
-            var geocoder = new MapboxGeocoder({
+            const geocoder = new MapboxGeocoder({
                 accessToken: MAPBOX_TOKEN, // Set the access token
                 mapboxgl: mapboxgl, // Set the mapbox-gl instance
                 marker: false, // Use the geocoder's default marker style
@@ -81,16 +81,16 @@ function weatherData() {
 
         document.addEventListener('change', geocoderEventPrep);
 
-        var coordinates = document.getElementById('coordinates');
+        const coordinates = document.getElementById('coordinates');
 
-        var geocoderMarkerDrag = new mapboxgl.Marker({
+        const geocoderMarkerDrag = new mapboxgl.Marker({
             draggable: true
         })
             .setLngLat([longitude, latitude])
             .addTo(map);
 
         function onDragEnd() {
-            var lngLat = geocoderMarkerDrag.getLngLat();
+            let lngLat = geocoderMarkerDrag.getLngLat();
             coordinates.style.display = 'block';
             coordinates.innerHTML =
                 'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;

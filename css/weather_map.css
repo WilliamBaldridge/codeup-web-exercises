@@ -9,7 +9,7 @@ h1 {
     font-size: 22px;
     margin: 0;
     font-weight: 400;
-    line-height: 20px;
+    line-height: 15px;
     padding: 18px;
 }
 
@@ -24,16 +24,16 @@ h1 {
 }
 
 .card {
-    background: lightgrey;
+    background: #DDDDDD;
 }
 
 .list-group-item {
-    background: lightgrey;
+    background: #DDDDDD;
 }
 
 .map {
     position: absolute;
-    top: 340px;
+    top: 37%;
     width: 100%;
     bottom: 0;
 }
