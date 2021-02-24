@@ -245,6 +245,95 @@ function firstAndLast (arr) {
     console.log(message);
 
 
+    // Promises
 
+    const isGoodDog = false;
+
+    // const getTreat = new Promise((resolve, reject) => {
+    //     setTimeout(() => {
+    //         if (isGoodDog) {
+    //             resolve("Good boy; have treat");
+    //         } else {
+    //             reject("Bad dog; no treat");
+    //         }
+    //     }, 5000);
+    // });
+    //
+    // console.log(getTreat); // logs entire promise object
+    //
+    // getTreat.then(data => {
+    //     console.log("Rolls over...")
+    //     console.log(data);
+    // }).catch(error => {
+    //     console.error("Bites shoe...")
+    //     console.log(error);
+    // });
+
+    /* TODO: Uncomment the line above then create a promise, haveTreat, that resolves with the string 'Good dog; have treat'
+        if the above constant is assigned to true and and rejects with the string 'Bad dog; no treat' if assigned false.
+     */
+// TODO: handle the promise by console logging the result if resolved or rejected
+
+    /* TODO: Refactor the promise above by wrapping the conditional logic of whether to resolve or reject
+        in a setTimeout so that the promise will only resolve or reject after five seconds.
+    */
+
+    // -------- MINI EXERCISE 2
+    /* TODO: using the code from the first mini-exercise, create a function, trainDog, that takes in a single boolean argument, isGoodDog, and returns a promise. This promise
+        has an identical definition as the haveTreat promise from the previous mini exercise.
+     */
+    /* TODO: invoke the trainDog function passing in true as and argument
+        chain then and catch methods to handle the returned promise. Refactor
+        to pass in false to the function.
+     */
+
+    function trainDog(isGoodDog) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if (isGoodDog) {
+                    resolve("Good boy; have treat");
+                } else {
+                    reject("Bad dog; no treat");
+                }
+            }, 5000);
+        });
+    }
+
+    console.log(trainDog()); // logs en
+
+trainDog(false)
+    .then(data => {
+        console.log("Rolls over...")
+        console.log(data);
+    })
+    .catch(error => {
+        console.error("Bites shoe...")
+        console.log(error);
+});
+
+    // trainDog(false)
+    //     .then(console.log)
+    //     .catch(console.error);
+
+
+    let william;
+
+    function Troll (name, weapon, maxDamage, resistance) {
+        this.name = name;
+        this.weapon = weapon;
+        this.maxDamage = maxDamage;
+        this.resistance = resistance;
+        this.attack = function(victim) {
+            let damage = Math.floor(Math.random() * this.maxDamage) + 1;
+            if(damage > this.maxDamage) {
+                damage = this.maxDamage;
+            }
+            console.log(this.name + " does " + damage + " damage!");
+        }
+    }
+
+    william = new Troll("William", "wit", 10, 10);
+
+    william.attack("Casey");
 
 })();
