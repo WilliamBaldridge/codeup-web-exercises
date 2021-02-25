@@ -107,9 +107,9 @@ const gitAPI = GITHUB_TOKEN;
 
 {
     document.write(`
+        <h1>Git user info:</h1>
         <div>
         <div><input id="username" type="text" maxlength="17" placeholder="username"></div>
-<!--//      <div><input id="password" type="password" maxlength="19" placeholder="password"></div>-->
         <div><button id="user-login">Login</button></div>
         </div>`);
 
@@ -120,13 +120,28 @@ const gitAPI = GITHUB_TOKEN;
     btn.click(() => {
         const username = $("#username").val();
         console.log(username);
-        let url = `https://api.github.com/users/${username}/events/public`;
+        let URL = `https://api.github.com/users/${username}/events/public`;
+        const CONFIG = {
+            headers: {
+                'Authorization': `token ${gitAPI}`
+            }
+        }
         function userNamePush() {
             return new Promise((resolve, reject) => {
-                resolve(fetch(url, {headers: {'Authorization': gitAPI}})
+                resolve(fetch(URL, CONFIG)
                     .then(response => response.json())
-                    .then(data => console.log(new Date(data[0].created_at))))
-                    .catch(console.error);
+                    // .then(data => {
+                    //     console.log(data);
+                    //     console.log(new Date(data[0].created_at).toDateString())
+                    // })
+                    .then(data => {
+                        let mostRecentEvent = data.filter((data) => data.type === "PushEvent");
+                        console.log(mostRecentEvent);
+                        let dateOfMostRecent = new Date(mostRecentEvent[0].created_at).toDateString();
+                        console.log(dateOfMostRecent);
+                        return dateOfMostRecent;
+                    })
+                    .catch(console.error));
             })
         }
 

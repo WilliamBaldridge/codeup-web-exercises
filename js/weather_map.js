@@ -32,13 +32,13 @@ function weatherData() {
                 }
             }
             const weatherIcon = data.daily[i].weather[0].icon;
-            const openWeatherIconSource = "http://openweathermap.org/img/w/" + weatherIcon + ".png";
+            const openWeatherIconSource = "http://openweathermap.org/img/wn/" + weatherIcon + ".png";
             const dateConversion = new Date(data.daily[i].dt * 1000);
             const outputDate = dateConversion.toLocaleDateString("en-US");
 
             html += `<div class='card col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 text-center' style='width: 18rem>`;
             html += `<h3 class='card-title'> ${outputDate} </h3>`;
-            html += `<img class='card-img-top' src='${openWeatherIconSource}'  alt='Weather Icon'>`;
+            html += `<p><img class='card-img-top' src='${openWeatherIconSource}'  alt='Weather Icon'></p>`;
             html += `<ul class='list-group list-group-flush'>`;
             html += `<li class='list-group-item'>H: ${parseInt(data.daily[i].temp.max)} &#176; F / L: ${parseInt(data.daily[i].temp.min)} &#176; F</li>`;
             html += `<li class='list-group-item'> ${precipitation()} % Chance of precipitation</li>`;
