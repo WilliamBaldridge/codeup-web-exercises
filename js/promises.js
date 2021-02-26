@@ -24,18 +24,18 @@ const gitAPI = GITHUB_TOKEN;
     // wait(3000).then(() => console.log('You\'ll see this after 3 seconds'));
 // }
 
-// {
-//
-//     fetch(`https://swapi.dev/api/people`)
-//         .then(response => response.json())
-//         .then(data => {
-//             console.log(data);
-//             const [{ name, height, mass, hair_color, gender  }] = data.results
-//             document.write(`<p>${name}, ${height}, ${hair_color} </p>`);
-//         })
-//         .catch(console.error);
-//
-// }
+{
+
+    fetch(`https://swapi.dev/api/people`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            const [{ name, height, mass, hair_color, gender  }] = data.results
+            document.write(`<h1>${name}, ${height}, ${hair_color} </h1>`);
+        })
+        .catch(console.error);
+
+}
 
 
 /* TODO: make a GET request using fetch to the url below to get an array of five cat fact objects.

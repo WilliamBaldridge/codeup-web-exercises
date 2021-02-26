@@ -336,4 +336,9 @@ trainDog(false)
 
     william.attack("Casey");
 
+
+    // let rubberDuckCost = (.333333 * 200000);
+    // console.log(rubberDuckCost);
+
+
 })();

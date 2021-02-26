@@ -68,7 +68,7 @@ const users = [
 }
 
 {
-    let userNames = users.reduce(function(accumulator, currentValue) {
+    let userNames = users.reduce(function (accumulator, currentValue) {
         return accumulator + ", " + currentValue.name;
     }, []);
 
@@ -76,33 +76,31 @@ const users = [
 }
 
 
+{
 
-function languageFilter(user) {
-    return user.languages.length >= 3;
-}
-
-function emailList(user) {
-    return user.email.split(" ");
-}
-
-function experienceFilter(yearsExp) {
-    return yearsExp.yearsOfExperience;
-}
-
-function reductionCallback(accumulator, currentValue) {
-    return accumulator + currentValue;
-}
-
-function emailLength(accumulator, currentValue) {
-    if (accumulator.email.length > currentValue.email.length) {
-        return accumulator.email;
-    } else {
-        return currentValue;
+    function emailList(user) {
+        return user.email.split(" ");
     }
-}
 
-function listOfNames(user) {
-    return user.name
+    function experienceFilter(yearsExp) {
+        return yearsExp.yearsOfExperience;
+    }
+
+    function reductionCallback(accumulator, currentValue) {
+        return accumulator + currentValue;
+    }
+
+    function emailLength(accumulator, currentValue) {
+        if (accumulator.email.length > currentValue.email.length) {
+            return accumulator.email;
+        } else {
+            return currentValue;
+        }
+    }
+
+    function listOfNames(user) {
+        return user.name
+    }
 }
 
 
